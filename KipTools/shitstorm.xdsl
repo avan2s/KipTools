@@ -1,0 +1,2589 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="SMTb">
+			<state id="active" />
+			<state id="enabled" />
+			<state id="available" />
+			<state id="completed" />
+			<probabilities>0 1 0 0</probabilities>
+			<property id="type">activity</property>
+		</cpt>
+		<cpt id="smtb_e">
+			<state id="e" />
+			<state id="ne" />
+			<parents>SMTb</parents>
+			<probabilities>0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Ev">
+			<state id="active" />
+			<state id="enabled" />
+			<state id="available" />
+			<state id="completed" />
+			<probabilities>0 1 0 0</probabilities>
+			<property id="type">activity</property>
+		</cpt>
+		<cpt id="ev_e">
+			<state id="e" />
+			<state id="ne" />
+			<parents>Ev</parents>
+			<probabilities>0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Uf">
+			<state id="active" />
+			<state id="enabled" />
+			<state id="available" />
+			<state id="completed" />
+			<probabilities>0 1 0 0</probabilities>
+			<property id="type">activity</property>
+		</cpt>
+		<cpt id="uf_e">
+			<state id="e" />
+			<state id="ne" />
+			<parents>Uf</parents>
+			<probabilities>0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Copy_of_R_U">
+			<state id="ethisch" />
+			<state id="sachlich" />
+			<probabilities>0.4 0.6</probabilities>
+		</cpt>
+		<cpt id="Copy_of_E_U">
+			<state id="ethisch" />
+			<state id="sachlich" />
+			<state id="unbekannt" />
+			<parents>Copy_of_R_U</parents>
+			<probabilities>0.95 0.01999999999999998 0.03000000000000007 0.02 0.95 0.03000000000000003</probabilities>
+		</cpt>
+		<cpt id="varU">
+			<state id="ethisch" />
+			<state id="sachlich" />
+			<state id="unbekannt" />
+			<parents>Copy_of_E_U</parents>
+			<probabilities>0 0 1 0 0 1 0 0 1</probabilities>
+		</cpt>
+		<cpt id="Sentry_Ve">
+			<state id="true" />
+			<state id="false" />
+			<parents>varU Uf</parents>
+			<probabilities>0 1 0 1 0 1 1 0 0 1 0 1 0 1 1 0 0 1 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Ve">
+			<state id="active" />
+			<state id="enabled" />
+			<state id="available" />
+			<state id="completed" />
+			<parents>Sentry_Ve</parents>
+			<probabilities>0 1 0 0 0 0 1 0</probabilities>
+			<property id="type">activity</property>
+		</cpt>
+		<cpt id="ve_e">
+			<state id="e" />
+			<state id="ne" />
+			<parents>Ve</parents>
+			<probabilities>0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="R_KZ_I">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<probabilities>0.5 0.3 0.15 0.05</probabilities>
+		</cpt>
+		<cpt id="Copy_of_R_KZ">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>R_KZ_I</parents>
+			<probabilities>0.98 0.02 0 0 0.01 0.98 0.01 0 0 0.03 0.96 0.01 0 0 0.05 0.95</probabilities>
+		</cpt>
+		<cpt id="E">
+			<state id="SMTb" />
+			<state id="Uf" />
+			<state id="Ve" />
+			<state id="Ev" />
+			<state id="nichts" />
+			<parents>smtb_e uf_e ve_e ev_e</parents>
+			<probabilities>0.2 0.2 0.2 0.2 0.2 0.25 0.25 0.25 0 0.25 0.25 0.25 0 0.25 0.25 0.3333333333333333 0.3333333333333333 0 0 0.3333333333333334 0.25 0 0.25 0.25 0.25 0.3333333333333333 0 0.3333333333333333 0 0.3333333333333334 0.3333333333333333 0 0 0.3333333333333333 0.3333333333333334 0.5 0 0 0 0.5 0 0.25 0.25 0.25 0.25 0 0.3333333333333333 0.3333333333333333 0 0.3333333333333334 0 0.3333333333333333 0 0.3333333333333333 0.3333333333333334 0 0.5 0 0 0.5 0 0 0.3333333333333333 0.3333333333333333 0.3333333333333334 0 0 0.5 0 0.5 0 0 0 0.5 0.5 0 0 0 0 1</probabilities>
+			<property id="type">zek</property>
+		</cpt>
+		<cpt id="W_SMtb_1">
+			<state id="true" />
+			<state id="false" />
+			<parents>E</parents>
+			<probabilities>1 0 0 1 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="E_KZ_I">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>R_KZ_I</parents>
+			<probabilities>0.9 0.1 0 0 0.05 0.9 0.05 0 0 0.05 0.9 0.05 0 0 0.1 0.9</probabilities>
+		</cpt>
+		<cpt id="varKZ">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>E_KZ_I</parents>
+			<probabilities>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="R_SP_I">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<probabilities>0.2 0.3 0.4 0.1000000000000001</probabilities>
+		</cpt>
+		<cpt id="E_SP_I">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>R_SP_I</parents>
+			<probabilities>0.9 0.1 0 0 0.05 0.9 0.05 0 0 0.05 0.9 0.05 0 0 0.1 0.9</probabilities>
+		</cpt>
+		<cpt id="varSP">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>E_SP_I</parents>
+			<probabilities>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<utility id="KZ">
+			<parents>R_KZ_I Copy_of_R_KZ</parents>
+			<utilities>0 35 70 80 -35 0 35 45 -70 -35 0 10 -80 -45 -10 0</utilities>
+		</utility>
+		<cpt id="R_SP">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>R_SP_I</parents>
+			<probabilities>0.96 0.04 0 0 0.02 0.96 0.02 0 0 0.01 0.96 0.03 0 0 0.04 0.96</probabilities>
+		</cpt>
+		<utility id="SP">
+			<parents>R_SP_I R_SP</parents>
+			<utilities>0 -35 -70 -80 35 0 -35 -45 70 35 0 -10 80 45 10 0</utilities>
+		</utility>
+		<cpt id="SMTb_1">
+			<state id="active" />
+			<state id="enabled" />
+			<state id="available" />
+			<state id="completed" />
+			<parents>W_SMtb_1 SMTb</parents>
+			<probabilities>0.05 0 0 0.95 0.2 0 0 0.8 0 0 1 0 0 0 0 1 0.05 0 0 0.95 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="smtb_e_1">
+			<state id="e" />
+			<state id="ne" />
+			<parents>SMTb_1</parents>
+			<probabilities>0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="W_Ev_1">
+			<state id="true" />
+			<state id="false" />
+			<parents>E</parents>
+			<probabilities>0 1 0 1 0 1 1 0 0 1</probabilities>
+		</cpt>
+		<cpt id="Ev_1">
+			<state id="active" />
+			<state id="enabled" />
+			<state id="available" />
+			<state id="completed" />
+			<parents>W_Ev_1 Ev</parents>
+			<probabilities>0.001 0 0 0.999 0.05 0 0 0.95 0 0 1 0 0 0 0 1 0.001 0 0 0.999 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="ev_e_1">
+			<state id="e" />
+			<state id="ne" />
+			<parents>Ev_1</parents>
+			<probabilities>0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="W_Uf_1">
+			<state id="true" />
+			<state id="false" />
+			<parents>E</parents>
+			<probabilities>0 1 1 0 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Uf_1">
+			<state id="active" />
+			<state id="enabled" />
+			<state id="available" />
+			<state id="completed" />
+			<parents>W_Uf_1 Uf</parents>
+			<probabilities>0.001 0 0 0.999 0.05 0 0 0.95 0 0 1 0 0 0 0 1 0.001 0 0 0.999 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="uf_e_1">
+			<state id="e" />
+			<state id="ne" />
+			<parents>Uf_1</parents>
+			<probabilities>0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Uf_Abr_1">
+			<state id="ja" />
+			<state id="nein" />
+			<parents>W_Uf_1 Uf</parents>
+			<probabilities>0.999 0.001 0.95 0.05 0 1 0 1 0.999 0.001 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="varU_1">
+			<state id="ethisch" />
+			<state id="sachlich" />
+			<state id="unbekannt" />
+			<parents>Uf_Abr_1 Copy_of_E_U varU</parents>
+			<probabilities>1 0 0 1 0 0 1 0 0 0 1 0 0 1 0 0 1 0 0 0 1 0 0 1 0 0 1 1 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="Sentry_Ve_1">
+			<state id="true" />
+			<state id="false" />
+			<parents>varU_1 Uf_1</parents>
+			<probabilities>0 1 0 1 0 1 1 0 0 1 0 1 0 1 1 0 0 1 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="W_Ve_1">
+			<state id="true" />
+			<state id="false" />
+			<parents>E</parents>
+			<probabilities>0 1 0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Ve_1">
+			<state id="active" />
+			<state id="enabled" />
+			<state id="available" />
+			<state id="completed" />
+			<parents>Sentry_Ve_1 W_Ve_1 Ve</parents>
+			<probabilities>0.001 0 0 0.999 0.05 0 0 0.95 0 1 0 0 0 0 0 1 0.001 0 0 0.999 0 1 0 0 0 1 0 0 0 0 0 1 0.001 0 0 0.999 0.05 0 0 0.95 0 0 1 0 0 0 0 1 0.001 0 0 0.999 0 0 1 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="ve_e_1">
+			<state id="e" />
+			<state id="ne" />
+			<parents>Ve_1</parents>
+			<probabilities>0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Ve_Abr_1">
+			<state id="ja" />
+			<state id="nein" />
+			<parents>W_Ve_1 Ve</parents>
+			<probabilities>0.999 0.001 0.95 0.05 0 1 0 1 0.999 0.001 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Einfluss_KZ_Ve_1">
+			<state id="negativ" />
+			<state id="keinen" />
+			<state id="positiv" />
+			<parents>Ve_Abr_1 Copy_of_R_U</parents>
+			<probabilities>0 0 1 0 0.95 0.05 0 1 0 0 1 0</probabilities>
+		</cpt>
+		<cpt id="Copy_of_R_KZ_1">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>Copy_of_R_KZ Einfluss_KZ_Ve_1</parents>
+			<probabilities>1 0 0 0 1 0 0 0 0.02 0.96 0.02 0 0.96 0.04 0 0 0 1 0 0 0 0.02 0.96 0.02 0.02 0.96 0.02 0 0 0 1 0 0 0 0.04 0.96 0 0.02 0.96 0.02 0 0 0 1 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="W_nichts_1">
+			<state id="true" />
+			<state id="false" />
+			<parents>E</parents>
+			<probabilities>0 1 0 1 0 1 0 1 1 0</probabilities>
+		</cpt>
+		<cpt id="nichts_Abr_1">
+			<state id="ja" />
+			<state id="nein" />
+			<parents>W_nichts_1</parents>
+			<probabilities>1 0 0 1</probabilities>
+		</cpt>
+		<cpt id="Ev_Abr_1">
+			<state id="ja" />
+			<state id="nein" />
+			<parents>W_Ev_1 Ev</parents>
+			<probabilities>0.999 0.001 0.95 0.05 0 1 0 1 0.999 0.001 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Einfluss_KZ_Ev_1">
+			<state id="negativ" />
+			<state id="keinen" />
+			<state id="positiv" />
+			<parents>Ev_Abr_1 Copy_of_R_U</parents>
+			<probabilities>0 1 0 0 0 1 0 1 0 0 1 0</probabilities>
+		</cpt>
+		<cpt id="varKZ_1">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>varKZ</parents>
+			<probabilities>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="varSP_1">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>varSP</parents>
+			<probabilities>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="E_1">
+			<state id="SMTb" />
+			<state id="Uf" />
+			<state id="Ve" />
+			<state id="Ev" />
+			<state id="nichts" />
+			<parents>smtb_e_1 uf_e_1 ve_e_1 ev_e_1</parents>
+			<probabilities>0.2 0.2 0.2 0.2 0.2 0.25 0.25 0.25 0 0.25 0.25 0.25 0 0.25 0.25 0.3333333333333333 0.3333333333333333 0 0 0.3333333333333334 0.25 0 0.25 0.25 0.25 0.3333333333333333 0 0.3333333333333333 0 0.3333333333333334 0.3333333333333333 0 0 0.3333333333333333 0.3333333333333334 0.5 0 0 0 0.5 0 0.25 0.25 0.25 0.25 0 0.3333333333333333 0.3333333333333333 0 0.3333333333333334 0 0.3333333333333333 0 0.3333333333333333 0.3333333333333334 0 0.5 0 0 0.5 0 0 0.3333333333333333 0.3333333333333333 0.3333333333333334 0 0 0.5 0 0.5 0 0 0 0.5 0.5 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="SMTb_Abr_1">
+			<state id="ja" />
+			<state id="nein" />
+			<parents>W_SMtb_1 SMTb</parents>
+			<probabilities>0.999 0.001 0.95 0.05 0 1 0 1 0.999 0.001 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<utility id="ZA_Ve_1">
+			<parents>Ve_Abr_1</parents>
+			<utilities>50 0</utilities>
+		</utility>
+		<utility id="KZ_1">
+			<parents>Copy_of_R_KZ Copy_of_R_KZ_1</parents>
+			<utilities>0 35 70 80 -35 0 35 45 -70 -35 0 10 -80 -45 -10 0</utilities>
+		</utility>
+		<utility id="KZ_nichts_1">
+			<parents>nichts_Abr_1</parents>
+			<utilities>-25 0</utilities>
+		</utility>
+		<cpt id="Einfluss_SP_Smtb_1">
+			<state id="negativ" />
+			<state id="keinen" />
+			<state id="positiv" />
+			<parents>SMTb_Abr_1</parents>
+			<probabilities>0 0.05 0.95 0 1 0</probabilities>
+		</cpt>
+		<cpt id="Einfluss_SP_Ev_1">
+			<state id="negativ" />
+			<state id="keinen" />
+			<state id="positiv" />
+			<parents>Ev_Abr_1 Copy_of_R_U</parents>
+			<probabilities>0 0.8 0.2 0 0 1 0 1 0 0 1 0</probabilities>
+		</cpt>
+		<cpt id="R_SP_1">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>R_SP Einfluss_SP_Smtb_1 Einfluss_SP_Ev_1</parents>
+			<probabilities>0 0.04000000000000004 0.95 0.01 0.02 0.96 0.02 0 0.96 0.04 0 0 0 0.96 0.03 0.01 1 0 0 0 1 0 0 0 0.96 0.04 0 0 1 0 0 0 1 0 0 0 0 0.02 0.96 0.02 0.02 0.96 0.02 0 0.96 0.04 0 0 0 0.02 0.96 0.02 0 1 0 0 0.96 0.04 0 0 0.02 0.96 0.02 0 0.96 0.04 0 0 1 0 0 0 0 0 0 1 0 0 0.04 0.96 0 0.02 0.96 0.02 0.02 0.96 0.02 0 0 0 1 0 0.02 0.96 0.02 0 0 0.03 0.96 0.01 0.02 0.96 0.02 0 0.96 0.04 0 0 0 0 0 1 0 0 0 1 0 0 0.04 0.96 0 0 0 1 0 0 0 1 0 0 0.96 0.04 0 0 0.04 0.96 0 0.02 0.96 0.02 0.04 0.95 0.01 0</probabilities>
+		</cpt>
+		<utility id="SP_nichts_1">
+			<parents>nichts_Abr_1</parents>
+			<utilities>-25 0</utilities>
+		</utility>
+		<utility id="SP_1">
+			<parents>R_SP R_SP_1</parents>
+			<utilities>0 -35 -70 -80 35 0 -35 -45 70 35 0 -10 80 45 10 0</utilities>
+		</utility>
+		<cpt id="Einfluss_SP_Ve_1">
+			<state id="negativ" />
+			<state id="keinen" />
+			<state id="positiv" />
+			<parents>Ve_Abr_1 Copy_of_R_U</parents>
+			<probabilities>0 0 1 0 0.9 0.1 0 1 0 0 1 0</probabilities>
+		</cpt>
+		<utility id="ZA_Smtb_1">
+			<parents>SMTb_Abr_1 varSP</parents>
+			<utilities>50 100 150 200 0 0 0 0</utilities>
+		</utility>
+		<utility id="K_Smtb_1">
+			<parents>SMTb_Abr_1 varSP</parents>
+			<utilities>250 500 750 1000 0 0 0 0</utilities>
+		</utility>
+		<utility id="K_Ev_1">
+			<parents>Ev_Abr_1 varSP varKZ</parents>
+			<utilities>2500 1250 1250 0 5000 2500 500 0 7500 3750 750 0 10000 5000 1000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</utilities>
+		</utility>
+		<utility id="ZA_Ev_1">
+			<parents>Ev_Abr_1</parents>
+			<utilities>60 0</utilities>
+		</utility>
+		<utility id="ZA_Uf_1">
+			<parents>Uf_Abr_1</parents>
+			<utilities>45 0</utilities>
+		</utility>
+		<utility id="K_Uf_1">
+			<parents>Uf_Abr_1</parents>
+			<utilities>1000 0</utilities>
+		</utility>
+		<utility id="K_Ve_1">
+			<parents>Ve_Abr_1</parents>
+			<utilities>6000 0</utilities>
+		</utility>
+		<utility id="IG_U_1">
+			<parents>varU varU_1</parents>
+			<utilities>0 1 0 1 0 0 1 1 0</utilities>
+		</utility>
+		<cpt id="W_SMtb_2">
+			<state id="true" />
+			<state id="false" />
+			<parents>E_1</parents>
+			<probabilities>1 0 0 1 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="SMTb_2">
+			<state id="active" />
+			<state id="enabled" />
+			<state id="available" />
+			<state id="completed" />
+			<parents>W_SMtb_2 SMTb_1</parents>
+			<probabilities>0.001 0 0 0.999 0.05 0 0 0.95 0 0 1 0 0 0 0 1 0.001 0 0 0.999 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="smtb_e_2">
+			<state id="e" />
+			<state id="ne" />
+			<parents>SMTb_2</parents>
+			<probabilities>0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="W_Ev_2">
+			<state id="true" />
+			<state id="false" />
+			<parents>E_1</parents>
+			<probabilities>0 1 0 1 0 1 1 0 0 1</probabilities>
+		</cpt>
+		<cpt id="Ev_2">
+			<state id="active" />
+			<state id="enabled" />
+			<state id="available" />
+			<state id="completed" />
+			<parents>W_Ev_2 Ev_1</parents>
+			<probabilities>0.001 0 0 0.999 0.05 0 0 0.95 0 0 1 0 0 0 0 1 0.001 0 0 0.999 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="ev_e_2">
+			<state id="e" />
+			<state id="ne" />
+			<parents>Ev_2</parents>
+			<probabilities>0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="W_Uf_2">
+			<state id="true" />
+			<state id="false" />
+			<parents>E_1</parents>
+			<probabilities>0 1 1 0 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Uf_2">
+			<state id="active" />
+			<state id="enabled" />
+			<state id="available" />
+			<state id="completed" />
+			<parents>W_Uf_2 Uf_1</parents>
+			<probabilities>0.001 0 0 0.999 0.05 0 0 0.95 0 0 1 0 0 0 0 1 0.001 0 0 0.999 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="uf_e_2">
+			<state id="e" />
+			<state id="ne" />
+			<parents>Uf_2</parents>
+			<probabilities>0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Uf_Abr_2">
+			<state id="ja" />
+			<state id="nein" />
+			<parents>W_Uf_2 Uf_1</parents>
+			<probabilities>0.999 0.001 0.95 0.05 0 1 0 1 0.999 0.001 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="varU_2">
+			<state id="ethisch" />
+			<state id="sachlich" />
+			<state id="unbekannt" />
+			<parents>Uf_Abr_2 Copy_of_E_U varU_1</parents>
+			<probabilities>1 0 0 1 0 0 1 0 0 0 1 0 0 1 0 0 1 0 0 0 1 0 0 1 0 0 1 1 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="Sentry_Ve_2">
+			<state id="true" />
+			<state id="false" />
+			<parents>varU_2 Uf_2</parents>
+			<probabilities>0 1 0 1 0 1 1 0 0 1 0 1 0 1 1 0 0 1 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="W_Ve_2">
+			<state id="true" />
+			<state id="false" />
+			<parents>E_1</parents>
+			<probabilities>0 1 0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Ve_2">
+			<state id="active" />
+			<state id="enabled" />
+			<state id="available" />
+			<state id="completed" />
+			<parents>Sentry_Ve_2 W_Ve_2 Ve_1</parents>
+			<probabilities>0.001 0 0 0.999 0.05 0 0 0.95 0 1 0 0 0 0 0 1 0.001 0 0 0.999 0 1 0 0 0 1 0 0 0 0 0 1 0.001 0 0 0.999 0.05 0 0 0.95 0 0 1 0 0 0 0 1 0.001 0 0 0.999 0 0 1 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="ve_e_2">
+			<state id="e" />
+			<state id="ne" />
+			<parents>Ve_2</parents>
+			<probabilities>0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Ve_Abr_2">
+			<state id="ja" />
+			<state id="nein" />
+			<parents>W_Ve_2 Ve_1</parents>
+			<probabilities>0.999 0.001 0.95 0.05 0 1 0 1 0.999 0.001 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Einfluss_KZ_Ve_2">
+			<state id="negativ" />
+			<state id="keinen" />
+			<state id="positiv" />
+			<parents>Ve_Abr_2 Copy_of_R_U</parents>
+			<probabilities>0 0 1 0 0.95 0.05 0 1 0 0 1 0</probabilities>
+		</cpt>
+		<cpt id="Copy_of_R_KZ_2">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>Copy_of_R_KZ_1 Einfluss_KZ_Ve_2 Einfluss_KZ_Ev_1</parents>
+			<probabilities>1 0 0 0 1 0 0 0 0.96 0.04 0 0 1 0 0 0 1 0 0 0 0.02 0.96 0.02 0 0.96 0.04 0 0 0.02 0.96 0.02 0 0 0 0.97 0.03 1 0 0 0 0.9 0.1 0 0 0.02 0.96 0.02 0 0.96 0.04 0 0 0 1 0 0 0 0.03 0.96 0.01 0.02 0.96 0.02 0 0 0.01 0.96 0.03 0 0 0.03 0.97 0.96 0.04 0 0 0.02 0.96 0.02 0 0 0.04 0.95 0.01 0.02 0.95 0.03 0 0 0 1 0 0 0 0.04 0.96 0 0.03 0.9399999999999999 0.03 0 0 0.05 0.95 0 0 0 1 0 0.9399999999999999 0.06 0 0 0.02 0.96 0.02 0 0 0.08 0.92 0 0.07999999999999997 0.9 0.02 0 0 0 1 0 0 0 1 0 0 0.08 0.92 0 0 0 1 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="W_nichts_2">
+			<state id="true" />
+			<state id="false" />
+			<parents>E_1</parents>
+			<probabilities>0 1 0 1 0 1 0 1 1 0</probabilities>
+		</cpt>
+		<cpt id="nichts_Abr_2">
+			<state id="ja" />
+			<state id="nein" />
+			<parents>W_nichts_2</parents>
+			<probabilities>1 0 0 1</probabilities>
+		</cpt>
+		<cpt id="Ev_Abr_2">
+			<state id="ja" />
+			<state id="nein" />
+			<parents>W_Ev_2 Ev_1</parents>
+			<probabilities>0.999 0.001 0.95 0.05 0 1 0 1 0.999 0.001 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Einfluss_KZ_Ev_2">
+			<state id="negativ" />
+			<state id="keinen" />
+			<state id="positiv" />
+			<parents>Ev_Abr_2 Copy_of_R_U</parents>
+			<probabilities>0 1 0 0 0 1 0 1 0 0 1 0</probabilities>
+		</cpt>
+		<cpt id="varKZ_2">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>varKZ_1</parents>
+			<probabilities>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="varSP_2">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>varSP_1</parents>
+			<probabilities>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="E_2">
+			<state id="SMTb" />
+			<state id="Uf" />
+			<state id="Ve" />
+			<state id="Ev" />
+			<state id="nichts" />
+			<parents>smtb_e_2 uf_e_2 ve_e_2 ev_e_2</parents>
+			<probabilities>0.2 0.2 0.2 0.2 0.2 0.25 0.25 0.25 0 0.25 0.25 0.25 0 0.25 0.25 0.3333333333333333 0.3333333333333333 0 0 0.3333333333333334 0.25 0 0.25 0.25 0.25 0.3333333333333333 0 0.3333333333333333 0 0.3333333333333334 0.3333333333333333 0 0 0.3333333333333333 0.3333333333333334 0.5 0 0 0 0.5 0 0.25 0.25 0.25 0.25 0 0.3333333333333333 0.3333333333333333 0 0.3333333333333334 0 0.3333333333333333 0 0.3333333333333333 0.3333333333333334 0 0.5 0 0 0.5 0 0 0.3333333333333333 0.3333333333333333 0.3333333333333334 0 0 0.5 0 0.5 0 0 0 0.5 0.5 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="SMTb_Abr_2">
+			<state id="ja" />
+			<state id="nein" />
+			<parents>W_SMtb_2 SMTb_1</parents>
+			<probabilities>0.999 0.001 0.95 0.05 0 1 0 1 0.999 0.001 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<utility id="ZA_Ve_2">
+			<parents>Ve_Abr_2</parents>
+			<utilities>50 0</utilities>
+		</utility>
+		<utility id="KZ_2">
+			<parents>Copy_of_R_KZ_1 Copy_of_R_KZ_2</parents>
+			<utilities>0 35 70 80 -35 0 35 45 -70 -35 0 10 -80 -45 -10 0</utilities>
+		</utility>
+		<utility id="KZ_nichts_2">
+			<parents>nichts_Abr_2</parents>
+			<utilities>0 0</utilities>
+		</utility>
+		<cpt id="Einfluss_SP_Smtb_2">
+			<state id="negativ" />
+			<state id="keinen" />
+			<state id="positiv" />
+			<parents>SMTb_Abr_2</parents>
+			<probabilities>0 0.05 0.95 0 1 0</probabilities>
+		</cpt>
+		<cpt id="Einfluss_SP_Ev_2">
+			<state id="negativ" />
+			<state id="keinen" />
+			<state id="positiv" />
+			<parents>Ev_Abr_2 Copy_of_R_U</parents>
+			<probabilities>0 0.8 0.2 0 0 1 0 1 0 0 1 0</probabilities>
+		</cpt>
+		<cpt id="R_SP_2">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>R_SP_1 Einfluss_SP_Smtb_2 Einfluss_SP_Ev_2 Einfluss_SP_Ve_1</parents>
+			<probabilities>0 0 0.1 0.9 0 0.02 0.96 0.02 0.02 0.96 0.02 0 0 0.03 0.96 0.01 0.05999999999999996 0.92 0.02 0 0.95 0.05 0 0 0.02 0.96 0.02 0 0.96 0.04 0 0 1 0 0 0 0 0.07000000000000001 0.9 0.03 0.04000000000000004 0.95 0.01 0 0.96 0.04 0 0 0.04 0.9399999999999999 0.02 0 1 0 0 0 1 0 0 0 0.96 0.04 0 0 1 0 0 0 1 0 0 0 0.05 0.9399999999999999 0.01 0 0.96 0.04 0 0 1 0 0 0 0.95 0.05 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0 0 0.02 0.98 0 0 0.08 0.92 0 0.02 0.96 0.02 0 0 0.05 0.95 0 0.02000000000000004 0.96 0.02 0.02 0.96 0.02 0 0 0.02 0.96 0.02 0.02 0.96 0.02 0 0.96 0.04 0 0 0 0 0.08 0.92 0 0.03000000000000003 0.96 0.01 0.02 0.96 0.02 0 0 0.04 0.9399999999999999 0.02 0 1 0 0 0.95 0.05 0 0 0.02 0.96 0.02 0 0.95 0.05 0 0 1 0 0 0 0 0.07999999999999997 0.9 0.02 0.02 0.96 0.02 0 0.96 0.04 0 0 0.02 0.96 0.02 0 0.96 0.04 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0 0 0 1 0 0 0 1 0 0 0.05 0.95 0 0 0 1 0 0 0.05 0.95 0 0.02 0.96 0.02 0 0 0.1 0.9 0 0.04 0.95 0.01 0.02 0.95 0.03000000000000003 0 0 0 0 1 0 0 0.04 0.96 0 0.02 0.96 0.02 0 0 0.05 0.95 0 0 1 0 0.04 0.9399999999999999 0.02 0 0 0.03 0.96 0.01 0.02 0.96 0.02 0 0.95 0.05 0 0 0 0 0.05 0.95 0 0.03000000000000003 0.96 0.01 0.02 0.96 0.02 0 0 0.03900000000000003 0.96 0.001 0.02 0.96 0.02 0 0.96 0.04 0 0 0.02 0.96 0.02 0 0.96 0.04 0 0 0.999 0.001 0 0 0 0 0 1 0 0 0 1 0 0 0.05 0.95 0 0 0 1 0 0 0.05 0.95 0 0 0.05 0.95 0 0 0 1 0 0 0.06 0.9399999999999999 0 0.08999999999999998 0.9 0.01 0 0 0 1 0 0 0 1 0 0 0.04 0.96 0 0 0 1 0 0 0 1 0 0.02 0.9399999999999999 0.04000000000000004 0 0 0.06 0.9399999999999999 0 0.08999999999999998 0.9 0.01 0.01 0.97 0.02 0 0 0 0.01 0.99 0 0 0.1 0.9 0 0.08 0.91 0.01 0 0 0.1 0.9 0 0.04 0.95 0.01 0.02 0.96 0.02 0 0 0.03 0.96 0.01 0.02 0.96 0.02 0 0.95 0.05 0 0</probabilities>
+		</cpt>
+		<utility id="SP_nichts_2">
+			<parents>nichts_Abr_2</parents>
+			<utilities>0 0</utilities>
+		</utility>
+		<utility id="SP_2">
+			<parents>R_SP_1 R_SP_2</parents>
+			<utilities>0 -35 -70 -80 35 0 -35 -45 70 35 0 -10 80 45 10 0</utilities>
+		</utility>
+		<cpt id="Einfluss_SP_Ve_2">
+			<state id="negativ" />
+			<state id="keinen" />
+			<state id="positiv" />
+			<parents>Ve_Abr_2 Copy_of_R_U</parents>
+			<probabilities>0 0 1 0 0.9 0.1 0 1 0 0 1 0</probabilities>
+		</cpt>
+		<utility id="ZA_Smtb_2">
+			<parents>SMTb_Abr_2 varSP_1</parents>
+			<utilities>50 100 150 200 0 0 0 0</utilities>
+		</utility>
+		<utility id="K_Smtb_2">
+			<parents>SMTb_Abr_2 varSP_1</parents>
+			<utilities>250 500 750 1000 0 0 0 0</utilities>
+		</utility>
+		<utility id="K_Ev_2">
+			<parents>Ev_Abr_2 varSP_1 varKZ_1</parents>
+			<utilities>2500 1250 1250 0 5000 2500 500 0 7500 3750 750 0 10000 5000 1000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</utilities>
+		</utility>
+		<utility id="ZA_Ev_2">
+			<parents>Ev_Abr_2</parents>
+			<utilities>60 0</utilities>
+		</utility>
+		<utility id="ZA_Uf_2">
+			<parents>Uf_Abr_2</parents>
+			<utilities>45 0</utilities>
+		</utility>
+		<utility id="K_Uf_2">
+			<parents>Uf_Abr_2</parents>
+			<utilities>1000 0</utilities>
+		</utility>
+		<utility id="K_Ve_2">
+			<parents>Ve_Abr_2</parents>
+			<utilities>6000 0</utilities>
+		</utility>
+		<utility id="IG_U_2">
+			<parents>varU_1 varU_2</parents>
+			<utilities>0 1 0 1 0 0 1 1 0</utilities>
+		</utility>
+		<cpt id="W_SMtb_3">
+			<state id="true" />
+			<state id="false" />
+			<parents>E_2</parents>
+			<probabilities>1 0 0 1 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="SMTb_3">
+			<state id="active" />
+			<state id="enabled" />
+			<state id="available" />
+			<state id="completed" />
+			<parents>W_SMtb_3 SMTb_2</parents>
+			<probabilities>0.001 0 0 0.999 0.05 0 0 0.95 0 0 1 0 0 0 0 1 0.001 0 0 0.999 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="smtb_e_3">
+			<state id="e" />
+			<state id="ne" />
+			<parents>SMTb_3</parents>
+			<probabilities>0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="W_Ev_3">
+			<state id="true" />
+			<state id="false" />
+			<parents>E_2</parents>
+			<probabilities>0 1 0 1 0 1 1 0 0 1</probabilities>
+		</cpt>
+		<cpt id="Ev_3">
+			<state id="active" />
+			<state id="enabled" />
+			<state id="available" />
+			<state id="completed" />
+			<parents>W_Ev_3 Ev_2</parents>
+			<probabilities>0.001 0 0 0.999 0.05 0 0 0.95 0 0 1 0 0 0 0 1 0.001 0 0 0.999 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="ev_e_3">
+			<state id="e" />
+			<state id="ne" />
+			<parents>Ev_3</parents>
+			<probabilities>0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="W_Uf_3">
+			<state id="true" />
+			<state id="false" />
+			<parents>E_2</parents>
+			<probabilities>0 1 1 0 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Uf_3">
+			<state id="active" />
+			<state id="enabled" />
+			<state id="available" />
+			<state id="completed" />
+			<parents>W_Uf_3 Uf_2</parents>
+			<probabilities>0.001 0 0 0.999 0.05 0 0 0.95 0 0 1 0 0 0 0 1 0.001 0 0 0.999 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="uf_e_3">
+			<state id="e" />
+			<state id="ne" />
+			<parents>Uf_3</parents>
+			<probabilities>0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Uf_Abr_3">
+			<state id="ja" />
+			<state id="nein" />
+			<parents>W_Uf_3 Uf_2</parents>
+			<probabilities>0.999 0.001 0.95 0.05 0 1 0 1 0.999 0.001 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="varU_3">
+			<state id="ethisch" />
+			<state id="sachlich" />
+			<state id="unbekannt" />
+			<parents>Uf_Abr_3 Copy_of_E_U varU_2</parents>
+			<probabilities>1 0 0 1 0 0 1 0 0 0 1 0 0 1 0 0 1 0 0 0 1 0 0 1 0 0 1 1 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="Sentry_Ve_3">
+			<state id="true" />
+			<state id="false" />
+			<parents>varU_3 Uf_3</parents>
+			<probabilities>0 1 0 1 0 1 1 0 0 1 0 1 0 1 1 0 0 1 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="W_Ve_3">
+			<state id="true" />
+			<state id="false" />
+			<parents>E_2</parents>
+			<probabilities>0 1 0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Ve_3">
+			<state id="active" />
+			<state id="enabled" />
+			<state id="available" />
+			<state id="completed" />
+			<parents>Sentry_Ve_3 W_Ve_3 Ve_2</parents>
+			<probabilities>0.001 0 0 0.999 0.05 0 0 0.95 0 1 0 0 0 0 0 1 0.001 0 0 0.999 0 1 0 0 0 1 0 0 0 0 0 1 0.001 0 0 0.999 0.05 0 0 0.95 0 0 1 0 0 0 0 1 0.001 0 0 0.999 0 0 1 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="ve_e_3">
+			<state id="e" />
+			<state id="ne" />
+			<parents>Ve_3</parents>
+			<probabilities>0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Ve_Abr_3">
+			<state id="ja" />
+			<state id="nein" />
+			<parents>W_Ve_3 Ve_2</parents>
+			<probabilities>0.999 0.001 0.95 0.05 0 1 0 1 0.999 0.001 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Einfluss_KZ_Ve_3">
+			<state id="negativ" />
+			<state id="keinen" />
+			<state id="positiv" />
+			<parents>Ve_Abr_3 Copy_of_R_U</parents>
+			<probabilities>0 0 1 0 0.95 0.05 0 1 0 0 1 0</probabilities>
+		</cpt>
+		<cpt id="Copy_of_R_KZ_3">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>Copy_of_R_KZ_2 Einfluss_KZ_Ve_3 Einfluss_KZ_Ev_2</parents>
+			<probabilities>1 0 0 0 1 0 0 0 0.96 0.04 0 0 1 0 0 0 1 0 0 0 0.02 0.96 0.02 0 0.96 0.04 0 0 0.02 0.96 0.02 0 0 0 0.97 0.03 1 0 0 0 0.9 0.1 0 0 0.02 0.96 0.02 0 0.96 0.04 0 0 0 1 0 0 0 0.03 0.96 0.01 0.02 0.96 0.02 0 0 0.01 0.96 0.03 0 0 0.03 0.97 0.96 0.04 0 0 0.02 0.96 0.02 0 0 0.04 0.95 0.01 0.02 0.95 0.03 0 0 0 1 0 0 0 0.04 0.96 0 0.03 0.9399999999999999 0.03 0 0 0.05 0.95 0 0 0 1 0 0.9399999999999999 0.06 0 0 0.02 0.96 0.02 0 0 0.08 0.92 0 0.07999999999999997 0.9 0.02 0 0 0 1 0 0 0 1 0 0 0.08 0.92 0 0 0 1 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="W_nichts_3">
+			<state id="true" />
+			<state id="false" />
+			<parents>E_2</parents>
+			<probabilities>0 1 0 1 0 1 0 1 1 0</probabilities>
+		</cpt>
+		<cpt id="nichts_Abr_3">
+			<state id="ja" />
+			<state id="nein" />
+			<parents>W_nichts_3</parents>
+			<probabilities>1 0 0 1</probabilities>
+		</cpt>
+		<cpt id="Ev_Abr_3">
+			<state id="ja" />
+			<state id="nein" />
+			<parents>W_Ev_3 Ev_2</parents>
+			<probabilities>0.999 0.001 0.95 0.05 0 1 0 1 0.999 0.001 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Einfluss_KZ_Ev_3">
+			<state id="negativ" />
+			<state id="keinen" />
+			<state id="positiv" />
+			<parents>Ev_Abr_3 Copy_of_R_U</parents>
+			<probabilities>0 1 0 0 0 1 0 1 0 0 1 0</probabilities>
+		</cpt>
+		<cpt id="varKZ_3">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>varKZ_2</parents>
+			<probabilities>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="varSP_3">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>varSP_2</parents>
+			<probabilities>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="E_3">
+			<state id="SMTb" />
+			<state id="Uf" />
+			<state id="Ve" />
+			<state id="Ev" />
+			<state id="nichts" />
+			<parents>smtb_e_3 uf_e_3 ve_e_3 ev_e_3</parents>
+			<probabilities>0.2 0.2 0.2 0.2 0.2 0.25 0.25 0.25 0 0.25 0.25 0.25 0 0.25 0.25 0.3333333333333333 0.3333333333333333 0 0 0.3333333333333334 0.25 0 0.25 0.25 0.25 0.3333333333333333 0 0.3333333333333333 0 0.3333333333333334 0.3333333333333333 0 0 0.3333333333333333 0.3333333333333334 0.5 0 0 0 0.5 0 0.25 0.25 0.25 0.25 0 0.3333333333333333 0.3333333333333333 0 0.3333333333333334 0 0.3333333333333333 0 0.3333333333333333 0.3333333333333334 0 0.5 0 0 0.5 0 0 0.3333333333333333 0.3333333333333333 0.3333333333333334 0 0 0.5 0 0.5 0 0 0 0.5 0.5 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="SMTb_Abr_3">
+			<state id="ja" />
+			<state id="nein" />
+			<parents>W_SMtb_3 SMTb_2</parents>
+			<probabilities>0.999 0.001 0.95 0.05 0 1 0 1 0.999 0.001 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<utility id="ZA_Ve_3">
+			<parents>Ve_Abr_3</parents>
+			<utilities>50 0</utilities>
+		</utility>
+		<utility id="KZ_3">
+			<parents>Copy_of_R_KZ_2 Copy_of_R_KZ_3</parents>
+			<utilities>0 35 70 80 -35 0 35 45 -70 -35 0 10 -80 -45 -10 0</utilities>
+		</utility>
+		<utility id="KZ_nichts_3">
+			<parents>nichts_Abr_3</parents>
+			<utilities>0 0</utilities>
+		</utility>
+		<cpt id="Einfluss_SP_Smtb_3">
+			<state id="negativ" />
+			<state id="keinen" />
+			<state id="positiv" />
+			<parents>SMTb_Abr_3</parents>
+			<probabilities>0 0.05 0.95 0 1 0</probabilities>
+		</cpt>
+		<cpt id="Einfluss_SP_Ev_3">
+			<state id="negativ" />
+			<state id="keinen" />
+			<state id="positiv" />
+			<parents>Ev_Abr_3 Copy_of_R_U</parents>
+			<probabilities>0 0.8 0.2 0 0 1 0 1 0 0 1 0</probabilities>
+		</cpt>
+		<cpt id="R_SP_3">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>R_SP_2 Einfluss_SP_Smtb_3 Einfluss_SP_Ev_3 Einfluss_SP_Ve_2</parents>
+			<probabilities>0 0 0.1 0.9 0 0.02 0.96 0.02 0.02 0.96 0.02 0 0 0.03 0.96 0.01 0.05999999999999996 0.92 0.02 0 0.95 0.05 0 0 0.02 0.96 0.02 0 0.96 0.04 0 0 1 0 0 0 0 0.07000000000000001 0.9 0.03 0.04000000000000004 0.95 0.01 0 0.96 0.04 0 0 0.04 0.9399999999999999 0.02 0 1 0 0 0 1 0 0 0 0.96 0.04 0 0 1 0 0 0 1 0 0 0 0.05 0.9399999999999999 0.01 0 0.96 0.04 0 0 1 0 0 0 0.95 0.05 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0 0 0.02 0.98 0 0 0.08 0.92 0 0.02 0.96 0.02 0 0 0.05 0.95 0 0.02000000000000004 0.96 0.02 0.02 0.96 0.02 0 0 0.02 0.96 0.02 0.02 0.96 0.02 0 0.96 0.04 0 0 0 0 0.08 0.92 0 0.03000000000000003 0.96 0.01 0.02 0.96 0.02 0 0 0.04 0.9399999999999999 0.02 0 1 0 0 0.95 0.05 0 0 0.02 0.96 0.02 0 0.95 0.05 0 0 1 0 0 0 0 0.07999999999999997 0.9 0.02 0.02 0.96 0.02 0 0.96 0.04 0 0 0.02 0.96 0.02 0 0.96 0.04 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0 0 0 1 0 0 0 1 0 0 0.05 0.95 0 0 0 1 0 0 0.05 0.95 0 0.02 0.96 0.02 0 0 0.1 0.9 0 0.04 0.95 0.01 0.02 0.95 0.03000000000000003 0 0 0 0 1 0 0 0.04 0.96 0 0.02 0.96 0.02 0 0 0.05 0.95 0 0 1 0 0.04 0.9399999999999999 0.02 0 0 0.03 0.96 0.01 0.02 0.96 0.02 0 0.95 0.05 0 0 0 0 0.05 0.95 0 0.03000000000000003 0.96 0.01 0.02 0.96 0.02 0 0 0.03900000000000003 0.96 0.001 0.02 0.96 0.02 0 0.96 0.04 0 0 0.02 0.96 0.02 0 0.96 0.04 0 0 0.999 0.001 0 0 0 0 0 1 0 0 0 1 0 0 0.05 0.95 0 0 0 1 0 0 0.05 0.95 0 0 0.05 0.95 0 0 0 1 0 0 0.06 0.9399999999999999 0 0.08999999999999998 0.9 0.01 0 0 0 1 0 0 0 1 0 0 0.04 0.96 0 0 0 1 0 0 0 1 0 0.02 0.9399999999999999 0.04000000000000004 0 0 0.06 0.9399999999999999 0 0.08999999999999998 0.9 0.01 0.01 0.97 0.02 0 0 0 0.01 0.99 0 0 0.1 0.9 0 0.08 0.91 0.01 0 0 0.1 0.9 0 0.04 0.95 0.01 0.02 0.96 0.02 0 0 0.03 0.96 0.01 0.02 0.96 0.02 0 0.95 0.05 0 0</probabilities>
+		</cpt>
+		<utility id="SP_nichts_3">
+			<parents>nichts_Abr_3</parents>
+			<utilities>0 0</utilities>
+		</utility>
+		<utility id="SP_3">
+			<parents>R_SP_2 R_SP_3</parents>
+			<utilities>0 -35 -70 -80 35 0 -35 -45 70 35 0 -10 80 45 10 0</utilities>
+		</utility>
+		<cpt id="Einfluss_SP_Ve_3">
+			<state id="negativ" />
+			<state id="keinen" />
+			<state id="positiv" />
+			<parents>Ve_Abr_3 Copy_of_R_U</parents>
+			<probabilities>0 0 1 0 0.9 0.1 0 1 0 0 1 0</probabilities>
+		</cpt>
+		<utility id="ZA_Smtb_3">
+			<parents>SMTb_Abr_3 varSP_2</parents>
+			<utilities>50 100 150 200 0 0 0 0</utilities>
+		</utility>
+		<utility id="K_Smtb_3">
+			<parents>SMTb_Abr_3 varSP_2</parents>
+			<utilities>250 500 750 1000 0 0 0 0</utilities>
+		</utility>
+		<utility id="K_Ev_3">
+			<parents>Ev_Abr_3 varSP_2 varKZ_2</parents>
+			<utilities>2500 1250 1250 0 5000 2500 500 0 7500 3750 750 0 10000 5000 1000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</utilities>
+		</utility>
+		<utility id="ZA_Ev_3">
+			<parents>Ev_Abr_3</parents>
+			<utilities>60 0</utilities>
+		</utility>
+		<utility id="ZA_Uf_3">
+			<parents>Uf_Abr_3</parents>
+			<utilities>45 0</utilities>
+		</utility>
+		<utility id="K_Uf_3">
+			<parents>Uf_Abr_3</parents>
+			<utilities>1000 0</utilities>
+		</utility>
+		<utility id="K_Ve_3">
+			<parents>Ve_Abr_3</parents>
+			<utilities>6000 0</utilities>
+		</utility>
+		<utility id="IG_U_3">
+			<parents>varU_2 varU_3</parents>
+			<utilities>0 1 0 1 0 0 1 1 0</utilities>
+		</utility>
+		<cpt id="W_SMtb_4">
+			<state id="true" />
+			<state id="false" />
+			<parents>E_3</parents>
+			<probabilities>1 0 0 1 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="SMTb_4">
+			<state id="active" />
+			<state id="enabled" />
+			<state id="available" />
+			<state id="completed" />
+			<parents>W_SMtb_4 SMTb_3</parents>
+			<probabilities>0.001 0 0 0.999 0.05 0 0 0.95 0 0 1 0 0 0 0 1 0.001 0 0 0.999 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="smtb_e_4">
+			<state id="e" />
+			<state id="ne" />
+			<parents>SMTb_4</parents>
+			<probabilities>0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="W_Ev_4">
+			<state id="true" />
+			<state id="false" />
+			<parents>E_3</parents>
+			<probabilities>0 1 0 1 0 1 1 0 0 1</probabilities>
+		</cpt>
+		<cpt id="Ev_4">
+			<state id="active" />
+			<state id="enabled" />
+			<state id="available" />
+			<state id="completed" />
+			<parents>W_Ev_4 Ev_3</parents>
+			<probabilities>0.001 0 0 0.999 0.05 0 0 0.95 0 0 1 0 0 0 0 1 0.001 0 0 0.999 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="ev_e_4">
+			<state id="e" />
+			<state id="ne" />
+			<parents>Ev_4</parents>
+			<probabilities>0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="W_Uf_4">
+			<state id="true" />
+			<state id="false" />
+			<parents>E_3</parents>
+			<probabilities>0 1 1 0 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Uf_4">
+			<state id="active" />
+			<state id="enabled" />
+			<state id="available" />
+			<state id="completed" />
+			<parents>W_Uf_4 Uf_3</parents>
+			<probabilities>0.001 0 0 0.999 0.05 0 0 0.95 0 0 1 0 0 0 0 1 0.001 0 0 0.999 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="uf_e_4">
+			<state id="e" />
+			<state id="ne" />
+			<parents>Uf_4</parents>
+			<probabilities>0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Uf_Abr_4">
+			<state id="ja" />
+			<state id="nein" />
+			<parents>W_Uf_4 Uf_3</parents>
+			<probabilities>0.999 0.001 0.95 0.05 0 1 0 1 0.999 0.001 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="varU_4">
+			<state id="ethisch" />
+			<state id="sachlich" />
+			<state id="unbekannt" />
+			<parents>Uf_Abr_4 Copy_of_E_U varU_3</parents>
+			<probabilities>1 0 0 1 0 0 1 0 0 0 1 0 0 1 0 0 1 0 0 0 1 0 0 1 0 0 1 1 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="Sentry_Ve_4">
+			<state id="true" />
+			<state id="false" />
+			<parents>varU_4 Uf_4</parents>
+			<probabilities>0 1 0 1 0 1 1 0 0 1 0 1 0 1 1 0 0 1 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="W_Ve_4">
+			<state id="true" />
+			<state id="false" />
+			<parents>E_3</parents>
+			<probabilities>0 1 0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Ve_4">
+			<state id="active" />
+			<state id="enabled" />
+			<state id="available" />
+			<state id="completed" />
+			<parents>Sentry_Ve_4 W_Ve_4 Ve_3</parents>
+			<probabilities>0.001 0 0 0.999 0.05 0 0 0.95 0 1 0 0 0 0 0 1 0.001 0 0 0.999 0 1 0 0 0 1 0 0 0 0 0 1 0.001 0 0 0.999 0.05 0 0 0.95 0 0 1 0 0 0 0 1 0.001 0 0 0.999 0 0 1 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="ve_e_4">
+			<state id="e" />
+			<state id="ne" />
+			<parents>Ve_4</parents>
+			<probabilities>0 1 1 0 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Ve_Abr_4">
+			<state id="ja" />
+			<state id="nein" />
+			<parents>W_Ve_4 Ve_3</parents>
+			<probabilities>0.999 0.001 0.95 0.05 0 1 0 1 0.999 0.001 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Einfluss_KZ_Ve_4">
+			<state id="negativ" />
+			<state id="keinen" />
+			<state id="positiv" />
+			<parents>Ve_Abr_4 Copy_of_R_U</parents>
+			<probabilities>0 0 1 0 0.95 0.05 0 1 0 0 1 0</probabilities>
+		</cpt>
+		<cpt id="Copy_of_R_KZ_4">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>Copy_of_R_KZ_3 Einfluss_KZ_Ve_4 Einfluss_KZ_Ev_3</parents>
+			<probabilities>1 0 0 0 1 0 0 0 0.96 0.04 0 0 1 0 0 0 1 0 0 0 0.02 0.96 0.02 0 0.96 0.04 0 0 0.02 0.96 0.02 0 0 0 0.97 0.03 1 0 0 0 0.9 0.1 0 0 0.02 0.96 0.02 0 0.96 0.04 0 0 0 1 0 0 0 0.03 0.96 0.01 0.02 0.96 0.02 0 0 0.01 0.96 0.03 0 0 0.03 0.97 0.96 0.04 0 0 0.02 0.96 0.02 0 0 0.04 0.95 0.01 0.02 0.95 0.03 0 0 0 1 0 0 0 0.04 0.96 0 0.03 0.9399999999999999 0.03 0 0 0.05 0.95 0 0 0 1 0 0.9399999999999999 0.06 0 0 0.02 0.96 0.02 0 0 0.08 0.92 0 0.07999999999999997 0.9 0.02 0 0 0 1 0 0 0 1 0 0 0.08 0.92 0 0 0 1 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="W_nichts_4">
+			<state id="true" />
+			<state id="false" />
+			<parents>E_3</parents>
+			<probabilities>0 1 0 1 0 1 0 1 1 0</probabilities>
+		</cpt>
+		<cpt id="nichts_Abr_4">
+			<state id="ja" />
+			<state id="nein" />
+			<parents>W_nichts_4</parents>
+			<probabilities>1 0 0 1</probabilities>
+		</cpt>
+		<cpt id="Ev_Abr_4">
+			<state id="ja" />
+			<state id="nein" />
+			<parents>W_Ev_4 Ev_3</parents>
+			<probabilities>0.999 0.001 0.95 0.05 0 1 0 1 0.999 0.001 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Einfluss_KZ_Ev_4">
+			<state id="negativ" />
+			<state id="keinen" />
+			<state id="positiv" />
+			<parents>Ev_Abr_4 Copy_of_R_U</parents>
+			<probabilities>0 1 0 0 0 1 0 1 0 0 1 0</probabilities>
+		</cpt>
+		<cpt id="varKZ_4">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>varKZ_3</parents>
+			<probabilities>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="varSP_4">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>varSP_3</parents>
+			<probabilities>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="E_4">
+			<state id="SMTb" />
+			<state id="Uf" />
+			<state id="Ve" />
+			<state id="Ev" />
+			<state id="nichts" />
+			<parents>smtb_e_4 uf_e_4 ve_e_4 ev_e_4</parents>
+			<probabilities>0.2 0.2 0.2 0.2 0.2 0.25 0.25 0.25 0 0.25 0.25 0.25 0 0.25 0.25 0.3333333333333333 0.3333333333333333 0 0 0.3333333333333334 0.25 0 0.25 0.25 0.25 0.3333333333333333 0 0.3333333333333333 0 0.3333333333333334 0.3333333333333333 0 0 0.3333333333333333 0.3333333333333334 0.5 0 0 0 0.5 0 0.25 0.25 0.25 0.25 0 0.3333333333333333 0.3333333333333333 0 0.3333333333333334 0 0.3333333333333333 0 0.3333333333333333 0.3333333333333334 0 0.5 0 0 0.5 0 0 0.3333333333333333 0.3333333333333333 0.3333333333333334 0 0 0.5 0 0.5 0 0 0 0.5 0.5 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="SMTb_Abr_4">
+			<state id="ja" />
+			<state id="nein" />
+			<parents>W_SMtb_4 SMTb_3</parents>
+			<probabilities>0.999 0.001 0.95 0.05 0 1 0 1 0.999 0.001 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<utility id="ZA_Ve_4">
+			<parents>Ve_Abr_4</parents>
+			<utilities>50 0</utilities>
+		</utility>
+		<utility id="KZ_4">
+			<parents>Copy_of_R_KZ_3 Copy_of_R_KZ_4</parents>
+			<utilities>0 35 70 80 -35 0 35 45 -70 -35 0 10 -80 -45 -10 0</utilities>
+		</utility>
+		<utility id="KZ_nichts_4">
+			<parents>nichts_Abr_4</parents>
+			<utilities>0 0</utilities>
+		</utility>
+		<cpt id="Einfluss_SP_Smtb_4">
+			<state id="negativ" />
+			<state id="keinen" />
+			<state id="positiv" />
+			<parents>SMTb_Abr_4</parents>
+			<probabilities>0 0.05 0.95 0 1 0</probabilities>
+		</cpt>
+		<cpt id="Einfluss_SP_Ev_4">
+			<state id="negativ" />
+			<state id="keinen" />
+			<state id="positiv" />
+			<parents>Ev_Abr_4 Copy_of_R_U</parents>
+			<probabilities>0 0.8 0.2 0 0 1 0 1 0 0 1 0</probabilities>
+		</cpt>
+		<cpt id="R_SP_4">
+			<state id="niedrig" />
+			<state id="mittel" />
+			<state id="hoch" />
+			<state id="riesig" />
+			<parents>R_SP_3 Einfluss_SP_Smtb_4 Einfluss_SP_Ev_4 Einfluss_SP_Ve_3</parents>
+			<probabilities>0 0 0.1 0.9 0 0.02 0.96 0.02 0.02 0.96 0.02 0 0 0.03 0.96 0.01 0.05999999999999996 0.92 0.02 0 0.95 0.05 0 0 0.02 0.96 0.02 0 0.96 0.04 0 0 1 0 0 0 0 0.07000000000000001 0.9 0.03 0.04000000000000004 0.95 0.01 0 0.96 0.04 0 0 0.04 0.9399999999999999 0.02 0 1 0 0 0 1 0 0 0 0.96 0.04 0 0 1 0 0 0 1 0 0 0 0.05 0.9399999999999999 0.01 0 0.96 0.04 0 0 1 0 0 0 0.95 0.05 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0 0 0.02 0.98 0 0 0.08 0.92 0 0.02 0.96 0.02 0 0 0.05 0.95 0 0.02000000000000004 0.96 0.02 0.02 0.96 0.02 0 0 0.02 0.96 0.02 0.02 0.96 0.02 0 0.96 0.04 0 0 0 0 0.08 0.92 0 0.03000000000000003 0.96 0.01 0.02 0.96 0.02 0 0 0.04 0.9399999999999999 0.02 0 1 0 0 0.95 0.05 0 0 0.02 0.96 0.02 0 0.95 0.05 0 0 1 0 0 0 0 0.07999999999999997 0.9 0.02 0.02 0.96 0.02 0 0.96 0.04 0 0 0.02 0.96 0.02 0 0.96 0.04 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0 0 0 1 0 0 0 1 0 0 0.05 0.95 0 0 0 1 0 0 0.05 0.95 0 0.02 0.96 0.02 0 0 0.1 0.9 0 0.04 0.95 0.01 0.02 0.95 0.03000000000000003 0 0 0 0 1 0 0 0.04 0.96 0 0.02 0.96 0.02 0 0 0.05 0.95 0 0 1 0 0.04 0.9399999999999999 0.02 0 0 0.03 0.96 0.01 0.02 0.96 0.02 0 0.95 0.05 0 0 0 0 0.05 0.95 0 0.03000000000000003 0.96 0.01 0.02 0.96 0.02 0 0 0.03900000000000003 0.96 0.001 0.02 0.96 0.02 0 0.96 0.04 0 0 0.02 0.96 0.02 0 0.96 0.04 0 0 0.999 0.001 0 0 0 0 0 1 0 0 0 1 0 0 0.05 0.95 0 0 0 1 0 0 0.05 0.95 0 0 0.05 0.95 0 0 0 1 0 0 0.06 0.9399999999999999 0 0.08999999999999998 0.9 0.01 0 0 0 1 0 0 0 1 0 0 0.04 0.96 0 0 0 1 0 0 0 1 0 0.02 0.9399999999999999 0.04000000000000004 0 0 0.06 0.9399999999999999 0 0.08999999999999998 0.9 0.01 0.01 0.97 0.02 0 0 0 0.01 0.99 0 0 0.1 0.9 0 0.08 0.91 0.01 0 0 0.1 0.9 0 0.04 0.95 0.01 0.02 0.96 0.02 0 0 0.03 0.96 0.01 0.02 0.96 0.02 0 0.95 0.05 0 0</probabilities>
+		</cpt>
+		<utility id="SP_nichts_4">
+			<parents>nichts_Abr_4</parents>
+			<utilities>0 0</utilities>
+		</utility>
+		<utility id="SP_4">
+			<parents>R_SP_3 R_SP_4</parents>
+			<utilities>0 -35 -70 -80 35 0 -35 -45 70 35 0 -10 80 45 10 0</utilities>
+		</utility>
+		<cpt id="Einfluss_SP_Ve_4">
+			<state id="negativ" />
+			<state id="keinen" />
+			<state id="positiv" />
+			<parents>Ve_Abr_4 Copy_of_R_U</parents>
+			<probabilities>0 0 1 0 0.9 0.1 0 1 0 0 1 0</probabilities>
+		</cpt>
+		<utility id="ZA_Smtb_4">
+			<parents>SMTb_Abr_4 varSP_3</parents>
+			<utilities>50 100 150 200 0 0 0 0</utilities>
+		</utility>
+		<utility id="K_Smtb_4">
+			<parents>SMTb_Abr_4 varSP_3</parents>
+			<utilities>250 500 750 1000 0 0 0 0</utilities>
+		</utility>
+		<utility id="K_Ev_4">
+			<parents>Ev_Abr_4 varSP_3 varKZ_3</parents>
+			<utilities>2500 1250 1250 0 5000 2500 500 0 7500 3750 750 0 10000 5000 1000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</utilities>
+		</utility>
+		<utility id="ZA_Ev_4">
+			<parents>Ev_Abr_4</parents>
+			<utilities>60 0</utilities>
+		</utility>
+		<utility id="ZA_Uf_4">
+			<parents>Uf_Abr_4</parents>
+			<utilities>45 0</utilities>
+		</utility>
+		<utility id="K_Uf_4">
+			<parents>Uf_Abr_4</parents>
+			<utilities>1000 0</utilities>
+		</utility>
+		<utility id="K_Ve_4">
+			<parents>Ve_Abr_4</parents>
+			<utilities>6000 0</utilities>
+		</utility>
+		<utility id="IG_U_4">
+			<parents>varU_3 varU_4</parents>
+			<utilities>0 1 0 1 0 0 1 1 0</utilities>
+		</utility>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.1.380.0" name="Network2 unrolled" faultnameformat="nodestate">
+			<node id="SMTb">
+				<name>SMTb</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1196 416 1264 460</position>
+			</node>
+			<node id="smtb_e">
+				<name>smtb_e</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1451 478 1502 509</position>
+			</node>
+			<node id="Ev">
+				<name>Ev</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1247 698 1315 742</position>
+			</node>
+			<node id="ev_e">
+				<name>ev_e</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1469 746 1512 772</position>
+			</node>
+			<node id="Uf">
+				<name>Uf</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1235 993 1303 1037</position>
+			</node>
+			<node id="uf_e">
+				<name>uf_e</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1476 957 1518 983</position>
+			</node>
+			<node id="Copy_of_R_U">
+				<name>R_U</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>866 4538 979 4600</position>
+			</node>
+			<node id="Copy_of_E_U">
+				<name>E_U</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>933 4407 1046 4469</position>
+			</node>
+			<node id="varU">
+				<name>varU</name>
+				<interior color="cc99ff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1298 3470 1363 3513</position>
+			</node>
+			<node id="Sentry_Ve">
+				<name>Sentry Ve</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1217 1338 1291 1376</position>
+			</node>
+			<node id="Ve">
+				<name>Ve</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1271 1400 1339 1444</position>
+			</node>
+			<node id="ve_e">
+				<name>ve_e</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1474 1273 1517 1299</position>
+			</node>
+			<node id="R_KZ_I">
+				<name>R_KZ_I</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>215 4250 328 4312</position>
+			</node>
+			<node id="Copy_of_R_KZ">
+				<name>R_KZ</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>845 4184 958 4246</position>
+			</node>
+			<node id="E_KZ_I">
+				<name>E_KZ_I</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>215 4161 328 4223</position>
+			</node>
+			<node id="varKZ">
+				<name>varKZ</name>
+				<interior color="cc99ff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1290 3794 1355 3837</position>
+			</node>
+			<node id="R_SP_I">
+				<name>R_SP_I</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>82 4285 195 4347</position>
+			</node>
+			<node id="E_SP_I">
+				<name>E_SP_I</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>85 4163 198 4225</position>
+			</node>
+			<node id="varSP">
+				<name>varSP</name>
+				<interior color="cc99ff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1202 3626 1267 3669</position>
+			</node>
+			<node id="E">
+				<name>E</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1716 565 1779 605</position>
+			</node>
+			<node id="KZ">
+				<name>KZ</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>775 4129 848 4161</position>
+			</node>
+			<node id="R_SP">
+				<name>R_SP</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>850 4284 963 4346</position>
+			</node>
+			<node id="SP">
+				<name>SP</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>749 4351 831 4383</position>
+			</node>
+			<textbox>
+				<caption>Step0</caption>
+				<font color="696969" name="Arial" size="7" />
+				<position>1114 4375 1138 4387</position>
+			</textbox>
+			<textbox>
+				<caption>Step1</caption>
+				<font color="696969" name="Arial" size="7" />
+				<position>3267 4375 3291 4387</position>
+			</textbox>
+			<textbox>
+				<caption>Step2</caption>
+				<font color="696969" name="Arial" size="7" />
+				<position>5420 4375 5444 4387</position>
+			</textbox>
+			<textbox>
+				<caption>Step3</caption>
+				<font color="696969" name="Arial" size="7" />
+				<position>7573 4375 7597 4387</position>
+			</textbox>
+			<textbox>
+				<caption>Step4</caption>
+				<font color="696969" name="Arial" size="7" />
+				<position>9726 4375 9750 4387</position>
+			</textbox>
+			<node id="W_SMtb_1">
+				<name>W_SMtb (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3053 464 3150 514</position>
+			</node>
+			<node id="SMTb_1">
+				<name>SMTb (t=1)</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3349 436 3417 480</position>
+			</node>
+			<node id="smtb_e_1">
+				<name>smtb_e (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3604 498 3655 529</position>
+			</node>
+			<node id="W_Ev_1">
+				<name>W_Ev (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3181 793 3275 836</position>
+			</node>
+			<node id="Ev_1">
+				<name>Ev (t=1)</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3400 718 3468 762</position>
+			</node>
+			<node id="ev_e_1">
+				<name>ev_e (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3622 766 3665 792</position>
+			</node>
+			<node id="W_Uf_1">
+				<name>W_Uf (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3217 1078 3309 1120</position>
+			</node>
+			<node id="Uf_1">
+				<name>Uf (t=1)</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3388 1013 3456 1057</position>
+			</node>
+			<node id="uf_e_1">
+				<name>uf_e (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3629 977 3671 1003</position>
+			</node>
+			<node id="Uf_Abr_1">
+				<name>Uf_Abr (t=1)</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3101 1001 3198 1047</position>
+			</node>
+			<node id="varU_1">
+				<name>varU (t=1)</name>
+				<interior color="cc99ff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3451 3490 3516 3533</position>
+			</node>
+			<node id="Sentry_Ve_1">
+				<name>Sentry Ve (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3370 1358 3444 1396</position>
+			</node>
+			<node id="W_Ve_1">
+				<name>W_Ve (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3290 1468 3382 1510</position>
+			</node>
+			<node id="Ve_1">
+				<name>Ve (t=1)</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3424 1420 3492 1464</position>
+			</node>
+			<node id="ve_e_1">
+				<name>ve_e (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3627 1293 3670 1319</position>
+			</node>
+			<node id="Ve_Abr_1">
+				<name>Ve_Abr (t=1)</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3202 1363 3286 1415</position>
+			</node>
+			<node id="Einfluss_KZ_Ve_1">
+				<name>Einfluss_KZ_Ve (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3142 1484 3273 1534</position>
+			</node>
+			<node id="Copy_of_R_KZ_1">
+				<name>R_KZ (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2726 4197 2839 4259</position>
+			</node>
+			<node id="W_nichts_1">
+				<name>W_nichts (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3265 1852 3369 1900</position>
+			</node>
+			<node id="nichts_Abr_1">
+				<name>nichts_Abr (t=1)</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3281 1942 3365 1994</position>
+			</node>
+			<node id="Ev_Abr_1">
+				<name>Ev_Abr (t=1)</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3101 718 3198 763</position>
+			</node>
+			<node id="Einfluss_KZ_Ev_1">
+				<name>Einfluss KZ Ev (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2632 697 2763 747</position>
+			</node>
+			<node id="varKZ_1">
+				<name>varKZ (t=1)</name>
+				<interior color="cc99ff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3443 3814 3508 3857</position>
+			</node>
+			<node id="varSP_1">
+				<name>varSP (t=1)</name>
+				<interior color="cc99ff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3355 3646 3420 3689</position>
+			</node>
+			<node id="E_1">
+				<name>E (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3869 585 3932 625</position>
+			</node>
+			<node id="SMTb_Abr_1">
+				<name>SMTb_Abr (t=1)</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2962 384 3051 429</position>
+			</node>
+			<node id="ZA_Ve_1">
+				<name>ZA Ve (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3172 1236 3254 1268</position>
+			</node>
+			<node id="KZ_1">
+				<name>KZ (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2603 4176 2676 4208</position>
+			</node>
+			<node id="KZ_nichts_1">
+				<name>KZ nichts (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3247 2036 3335 2068</position>
+			</node>
+			<node id="Einfluss_SP_Smtb_1">
+				<name>Einfluss SP SMTb (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2745 521 2876 571</position>
+			</node>
+			<node id="Einfluss_SP_Ev_1">
+				<name>Einfluss SP Ev (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2960 645 3091 695</position>
+			</node>
+			<node id="R_SP_1">
+				<name>R_SP (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2832 4278 2945 4340</position>
+			</node>
+			<node id="SP_nichts_1">
+				<name>SP nichts (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3392 2041 3494 2073</position>
+			</node>
+			<node id="SP_1">
+				<name>SP (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2609 4338 2691 4370</position>
+			</node>
+			<node id="Einfluss_SP_Ve_1">
+				<name>Einfluss SP Ve (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2899 1313 3030 1363</position>
+			</node>
+			<node id="ZA_Smtb_1">
+				<name>ZA Smtb (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2878 341 2969 373</position>
+			</node>
+			<node id="K_Smtb_1">
+				<name>K Smtb (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3060 348 3140 380</position>
+			</node>
+			<node id="K_Ev_1">
+				<name>K Ev (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3033 827 3117 859</position>
+			</node>
+			<node id="ZA_Ev_1">
+				<name>ZA  Ev (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3154 659 3225 691</position>
+			</node>
+			<node id="ZA_Uf_1">
+				<name>ZA Uf (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3107 935 3189 967</position>
+			</node>
+			<node id="K_Uf_1">
+				<name>K Uf (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3195 935 3256 967</position>
+			</node>
+			<node id="K_Ve_1">
+				<name>K_Ve (t=1)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3266 1255 3327 1287</position>
+			</node>
+			<node id="W_SMtb_2">
+				<name>W_SMtb (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5206 444 5303 494</position>
+			</node>
+			<node id="SMTb_2">
+				<name>SMTb (t=2)</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5502 416 5570 460</position>
+			</node>
+			<node id="smtb_e_2">
+				<name>smtb_e (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5757 478 5808 509</position>
+			</node>
+			<node id="W_Ev_2">
+				<name>W_Ev (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5334 773 5428 816</position>
+			</node>
+			<node id="Ev_2">
+				<name>Ev (t=2)</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5553 698 5621 742</position>
+			</node>
+			<node id="ev_e_2">
+				<name>ev_e (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5775 746 5818 772</position>
+			</node>
+			<node id="W_Uf_2">
+				<name>W_Uf (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5370 1058 5462 1100</position>
+			</node>
+			<node id="Uf_2">
+				<name>Uf (t=2)</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5541 993 5609 1037</position>
+			</node>
+			<node id="uf_e_2">
+				<name>uf_e (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5782 957 5824 983</position>
+			</node>
+			<node id="Uf_Abr_2">
+				<name>Uf_Abr (t=2)</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5254 981 5351 1027</position>
+			</node>
+			<node id="varU_2">
+				<name>varU (t=2)</name>
+				<interior color="cc99ff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5604 3470 5669 3513</position>
+			</node>
+			<node id="Sentry_Ve_2">
+				<name>Sentry Ve (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5523 1338 5597 1376</position>
+			</node>
+			<node id="W_Ve_2">
+				<name>W_Ve (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5443 1448 5535 1490</position>
+			</node>
+			<node id="Ve_2">
+				<name>Ve (t=2)</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5577 1400 5645 1444</position>
+			</node>
+			<node id="ve_e_2">
+				<name>ve_e (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5780 1273 5823 1299</position>
+			</node>
+			<node id="Ve_Abr_2">
+				<name>Ve_Abr (t=2)</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5332 1350 5416 1402</position>
+			</node>
+			<node id="Einfluss_KZ_Ve_2">
+				<name>Einfluss_KZ_Ve (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5295 1464 5426 1514</position>
+			</node>
+			<node id="Copy_of_R_KZ_2">
+				<name>R_KZ (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>4879 4177 4992 4239</position>
+			</node>
+			<node id="W_nichts_2">
+				<name>W_nichts (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5418 1832 5522 1880</position>
+			</node>
+			<node id="nichts_Abr_2">
+				<name>nichts_Abr (t=2)</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5434 1922 5518 1974</position>
+			</node>
+			<node id="Ev_Abr_2">
+				<name>Ev_Abr (t=2)</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5254 698 5351 743</position>
+			</node>
+			<node id="Einfluss_KZ_Ev_2">
+				<name>Einfluss KZ Ev (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>4785 677 4916 727</position>
+			</node>
+			<node id="varKZ_2">
+				<name>varKZ (t=2)</name>
+				<interior color="cc99ff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5596 3794 5661 3837</position>
+			</node>
+			<node id="varSP_2">
+				<name>varSP (t=2)</name>
+				<interior color="cc99ff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5508 3626 5573 3669</position>
+			</node>
+			<node id="E_2">
+				<name>E (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>6022 565 6085 605</position>
+			</node>
+			<node id="SMTb_Abr_2">
+				<name>SMTb_Abr (t=2)</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5115 364 5204 409</position>
+			</node>
+			<node id="ZA_Ve_2">
+				<name>ZA Ve (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5325 1216 5407 1248</position>
+			</node>
+			<node id="KZ_2">
+				<name>KZ (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>4756 4156 4829 4188</position>
+			</node>
+			<node id="KZ_nichts_2">
+				<name>KZ nichts (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5400 2016 5488 2048</position>
+			</node>
+			<node id="Einfluss_SP_Smtb_2">
+				<name>Einfluss SP SMTb (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>4898 501 5029 551</position>
+			</node>
+			<node id="Einfluss_SP_Ev_2">
+				<name>Einfluss SP Ev (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5113 625 5244 675</position>
+			</node>
+			<node id="R_SP_2">
+				<name>R_SP (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>4985 4258 5098 4320</position>
+			</node>
+			<node id="SP_nichts_2">
+				<name>SP nichts (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5545 2021 5647 2053</position>
+			</node>
+			<node id="SP_2">
+				<name>SP (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>4762 4318 4844 4350</position>
+			</node>
+			<node id="Einfluss_SP_Ve_2">
+				<name>Einfluss SP Ve (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5052 1293 5183 1343</position>
+			</node>
+			<node id="ZA_Smtb_2">
+				<name>ZA Smtb (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5031 321 5122 353</position>
+			</node>
+			<node id="K_Smtb_2">
+				<name>K Smtb (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5213 328 5293 360</position>
+			</node>
+			<node id="K_Ev_2">
+				<name>K Ev (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5186 807 5270 839</position>
+			</node>
+			<node id="ZA_Ev_2">
+				<name>ZA  Ev (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5307 639 5378 671</position>
+			</node>
+			<node id="ZA_Uf_2">
+				<name>ZA Uf (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5260 915 5342 947</position>
+			</node>
+			<node id="K_Uf_2">
+				<name>K Uf (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5348 915 5409 947</position>
+			</node>
+			<node id="K_Ve_2">
+				<name>K_Ve (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5419 1235 5480 1267</position>
+			</node>
+			<node id="IG_U_2">
+				<name>IG_U (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>5530 3408 5600 3440</position>
+			</node>
+			<node id="W_SMtb_3">
+				<name>W_SMtb (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7359 464 7456 514</position>
+			</node>
+			<node id="SMTb_3">
+				<name>SMTb (t=3)</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7655 436 7723 480</position>
+			</node>
+			<node id="smtb_e_3">
+				<name>smtb_e (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7910 498 7961 529</position>
+			</node>
+			<node id="W_Ev_3">
+				<name>W_Ev (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7487 793 7581 836</position>
+			</node>
+			<node id="Ev_3">
+				<name>Ev (t=3)</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7706 718 7774 762</position>
+			</node>
+			<node id="ev_e_3">
+				<name>ev_e (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7928 766 7971 792</position>
+			</node>
+			<node id="W_Uf_3">
+				<name>W_Uf (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7523 1078 7615 1120</position>
+			</node>
+			<node id="Uf_3">
+				<name>Uf (t=3)</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7694 1013 7762 1057</position>
+			</node>
+			<node id="uf_e_3">
+				<name>uf_e (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7935 977 7977 1003</position>
+			</node>
+			<node id="Uf_Abr_3">
+				<name>Uf_Abr (t=3)</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7407 1001 7504 1047</position>
+			</node>
+			<node id="varU_3">
+				<name>varU (t=3)</name>
+				<interior color="cc99ff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7757 3490 7822 3533</position>
+			</node>
+			<node id="Sentry_Ve_3">
+				<name>Sentry Ve (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7676 1358 7750 1396</position>
+			</node>
+			<node id="W_Ve_3">
+				<name>W_Ve (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7596 1468 7688 1510</position>
+			</node>
+			<node id="Ve_3">
+				<name>Ve (t=3)</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7730 1420 7798 1464</position>
+			</node>
+			<node id="ve_e_3">
+				<name>ve_e (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7933 1293 7976 1319</position>
+			</node>
+			<node id="Ve_Abr_3">
+				<name>Ve_Abr (t=3)</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7485 1370 7569 1422</position>
+			</node>
+			<node id="Einfluss_KZ_Ve_3">
+				<name>Einfluss_KZ_Ve (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7448 1484 7579 1534</position>
+			</node>
+			<node id="Copy_of_R_KZ_3">
+				<name>R_KZ (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7032 4197 7145 4259</position>
+			</node>
+			<node id="W_nichts_3">
+				<name>W_nichts (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7571 1852 7675 1900</position>
+			</node>
+			<node id="nichts_Abr_3">
+				<name>nichts_Abr (t=3)</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7587 1942 7671 1994</position>
+			</node>
+			<node id="Ev_Abr_3">
+				<name>Ev_Abr (t=3)</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7407 718 7504 763</position>
+			</node>
+			<node id="Einfluss_KZ_Ev_3">
+				<name>Einfluss KZ Ev (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>6938 697 7069 747</position>
+			</node>
+			<node id="varKZ_3">
+				<name>varKZ (t=3)</name>
+				<interior color="cc99ff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7749 3814 7814 3857</position>
+			</node>
+			<node id="varSP_3">
+				<name>varSP (t=3)</name>
+				<interior color="cc99ff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7661 3646 7726 3689</position>
+			</node>
+			<node id="E_3">
+				<name>E (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>8175 585 8238 625</position>
+			</node>
+			<node id="SMTb_Abr_3">
+				<name>SMTb_Abr (t=3)</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7268 384 7357 429</position>
+			</node>
+			<node id="ZA_Ve_3">
+				<name>ZA Ve (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7478 1236 7560 1268</position>
+			</node>
+			<node id="KZ_3">
+				<name>KZ (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>6909 4176 6982 4208</position>
+			</node>
+			<node id="KZ_nichts_3">
+				<name>KZ nichts (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7553 2036 7641 2068</position>
+			</node>
+			<node id="Einfluss_SP_Smtb_3">
+				<name>Einfluss SP SMTb (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7051 521 7182 571</position>
+			</node>
+			<node id="Einfluss_SP_Ev_3">
+				<name>Einfluss SP Ev (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7266 645 7397 695</position>
+			</node>
+			<node id="R_SP_3">
+				<name>R_SP (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7138 4278 7251 4340</position>
+			</node>
+			<node id="SP_nichts_3">
+				<name>SP nichts (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7698 2041 7800 2073</position>
+			</node>
+			<node id="SP_3">
+				<name>SP (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>6915 4338 6997 4370</position>
+			</node>
+			<node id="Einfluss_SP_Ve_3">
+				<name>Einfluss SP Ve (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7205 1313 7336 1363</position>
+			</node>
+			<node id="ZA_Smtb_3">
+				<name>ZA Smtb (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7184 341 7275 373</position>
+			</node>
+			<node id="K_Smtb_3">
+				<name>K Smtb (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7366 348 7446 380</position>
+			</node>
+			<node id="K_Ev_3">
+				<name>K Ev (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7339 827 7423 859</position>
+			</node>
+			<node id="ZA_Ev_3">
+				<name>ZA  Ev (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7460 659 7531 691</position>
+			</node>
+			<node id="ZA_Uf_3">
+				<name>ZA Uf (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7413 935 7495 967</position>
+			</node>
+			<node id="K_Uf_3">
+				<name>K Uf (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7501 935 7562 967</position>
+			</node>
+			<node id="K_Ve_3">
+				<name>K_Ve (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7572 1255 7633 1287</position>
+			</node>
+			<node id="IG_U_3">
+				<name>IG_U (t=3)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>7683 3428 7753 3460</position>
+			</node>
+			<node id="W_SMtb_4">
+				<name>W_SMtb (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9512 444 9609 494</position>
+			</node>
+			<node id="SMTb_4">
+				<name>SMTb (t=4)</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9808 416 9876 460</position>
+			</node>
+			<node id="smtb_e_4">
+				<name>smtb_e (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>10063 478 10114 509</position>
+			</node>
+			<node id="W_Ev_4">
+				<name>W_Ev (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9640 773 9734 816</position>
+			</node>
+			<node id="Ev_4">
+				<name>Ev (t=4)</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9859 698 9927 742</position>
+			</node>
+			<node id="ev_e_4">
+				<name>ev_e (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>10081 746 10124 772</position>
+			</node>
+			<node id="W_Uf_4">
+				<name>W_Uf (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9676 1058 9768 1100</position>
+			</node>
+			<node id="Uf_4">
+				<name>Uf (t=4)</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9847 993 9915 1037</position>
+			</node>
+			<node id="uf_e_4">
+				<name>uf_e (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>10088 957 10130 983</position>
+			</node>
+			<node id="Uf_Abr_4">
+				<name>Uf_Abr (t=4)</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9560 981 9657 1027</position>
+			</node>
+			<node id="varU_4">
+				<name>varU (t=4)</name>
+				<interior color="cc99ff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9910 3470 9975 3513</position>
+			</node>
+			<node id="Sentry_Ve_4">
+				<name>Sentry Ve (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9829 1338 9903 1376</position>
+			</node>
+			<node id="W_Ve_4">
+				<name>W_Ve (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9749 1448 9841 1490</position>
+			</node>
+			<node id="Ve_4">
+				<name>Ve (t=4)</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9883 1400 9951 1444</position>
+			</node>
+			<node id="ve_e_4">
+				<name>ve_e (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>10086 1273 10129 1299</position>
+			</node>
+			<node id="Ve_Abr_4">
+				<name>Ve_Abr (t=4)</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9638 1350 9722 1402</position>
+			</node>
+			<node id="Einfluss_KZ_Ve_4">
+				<name>Einfluss_KZ_Ve (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9601 1464 9732 1514</position>
+			</node>
+			<node id="Copy_of_R_KZ_4">
+				<name>R_KZ (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9185 4177 9298 4239</position>
+			</node>
+			<node id="W_nichts_4">
+				<name>W_nichts (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9724 1832 9828 1880</position>
+			</node>
+			<node id="nichts_Abr_4">
+				<name>nichts_Abr (t=4)</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9740 1922 9824 1974</position>
+			</node>
+			<node id="Ev_Abr_4">
+				<name>Ev_Abr (t=4)</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9560 698 9657 743</position>
+			</node>
+			<node id="Einfluss_KZ_Ev_4">
+				<name>Einfluss KZ Ev (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9091 677 9222 727</position>
+			</node>
+			<node id="varKZ_4">
+				<name>varKZ (t=4)</name>
+				<interior color="cc99ff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9902 3794 9967 3837</position>
+			</node>
+			<node id="varSP_4">
+				<name>varSP (t=4)</name>
+				<interior color="cc99ff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9814 3626 9879 3669</position>
+			</node>
+			<node id="E_4">
+				<name>E (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>10328 565 10391 605</position>
+			</node>
+			<node id="SMTb_Abr_4">
+				<name>SMTb_Abr (t=4)</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9421 364 9510 409</position>
+			</node>
+			<node id="ZA_Ve_4">
+				<name>ZA Ve (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9631 1216 9713 1248</position>
+			</node>
+			<node id="KZ_4">
+				<name>KZ (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9062 4156 9135 4188</position>
+			</node>
+			<node id="KZ_nichts_4">
+				<name>KZ nichts (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9706 2016 9794 2048</position>
+			</node>
+			<node id="Einfluss_SP_Smtb_4">
+				<name>Einfluss SP SMTb (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9204 501 9335 551</position>
+			</node>
+			<node id="Einfluss_SP_Ev_4">
+				<name>Einfluss SP Ev (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9419 625 9550 675</position>
+			</node>
+			<node id="R_SP_4">
+				<name>R_SP (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9291 4258 9404 4320</position>
+			</node>
+			<node id="SP_nichts_4">
+				<name>SP nichts (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9851 2021 9953 2053</position>
+			</node>
+			<node id="SP_4">
+				<name>SP (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9068 4318 9150 4350</position>
+			</node>
+			<node id="Einfluss_SP_Ve_4">
+				<name>Einfluss SP Ve (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9358 1293 9489 1343</position>
+			</node>
+			<node id="ZA_Smtb_4">
+				<name>ZA Smtb (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9337 321 9428 353</position>
+			</node>
+			<node id="K_Smtb_4">
+				<name>K Smtb (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9519 328 9599 360</position>
+			</node>
+			<node id="K_Ev_4">
+				<name>K Ev (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9492 807 9576 839</position>
+			</node>
+			<node id="ZA_Ev_4">
+				<name>ZA  Ev (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9613 639 9684 671</position>
+			</node>
+			<node id="ZA_Uf_4">
+				<name>ZA Uf (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9566 915 9648 947</position>
+			</node>
+			<node id="K_Uf_4">
+				<name>K Uf (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9654 915 9715 947</position>
+			</node>
+			<node id="K_Ve_4">
+				<name>K_Ve (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9725 1235 9786 1267</position>
+			</node>
+			<node id="IG_U_4">
+				<name>IG_U (t=4)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>9836 3408 9906 3440</position>
+			</node>
+			<node id="IG_U_1">
+				<name>IG_U (t=2)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>3323 3445 3430 3477</position>
+			</node>
+		</genie>
+	</extensions>
+</smile>
