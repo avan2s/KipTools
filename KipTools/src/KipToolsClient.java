@@ -12,7 +12,7 @@ import kip.tools.model.KipGoal;
 public class KipToolsClient {
 
 	public static void main(String[] args) throws Exception {
-
+//
 		List<KipEvidence> evidences = new ArrayList<>();
 		evidences.add(new KipEvidence("SMTb", "enabled"));
 		evidences.add(new KipEvidence("Uf", "enabled"));
