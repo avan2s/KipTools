@@ -1,11 +1,15 @@
 package kip.tools;
 
 import java.util.Arrays;
-import java.util.Map;
+import java.util.List;
 
+import kip.tools.exception.ValueNotReadableException;
+import kip.tools.model.KipEvidence;
+import smile.SMILEException;
 import smile.Network.NodeType;
 
 public class EvidenceSetter {
+
 	private InfluenceDiagramNetwork net;
 
 	public EvidenceSetter(InfluenceDiagramNetwork net) {
@@ -20,40 +24,84 @@ public class EvidenceSetter {
 		this.net = net;
 	}
 
-	public InfluenceDiagramNetwork setEvidences(Map<String, String> nodeNameToEvidence, boolean updateBeliefs) {
-		for (Map.Entry<String, String> entry : nodeNameToEvidence.entrySet()) {
-			String nodeId = entry.getKey();
-			String evidenceValue = entry.getValue();
-			this.setEvidence(nodeId, evidenceValue, false);
+	/**
+	 * @param evidences
+	 *            Evidenzen, die zu setzen sind
+	 * @param checkEvidences
+	 *            Bei true wird bei jeder Evidenz eine Validitätsprüfung anhand
+	 *            des vorliegenden Influence Diagrams durchgeführt.
+	 * @param afterUpdate
+	 *            Bei true, werden die Wahrscheinlichkeitsverteilungen nach dem
+	 *            Lösen des Influence Diagrams aktualisiert.
+	 * @return
+	 * @throws ValueNotReadableException
+	 */
+	public boolean setEvidences(List<KipEvidence> evidences, boolean checkEvidences, boolean afterUpdate)
+			throws ValueNotReadableException {
+		for (KipEvidence evidence : evidences) {
+			String nodeId = evidence.getNodeName();
+			String evidenceValue = evidence.getEvidenceValue();
+			if (!this.setEvidence(nodeId, evidenceValue, checkEvidences, false)) {
+				return false;
+			}
 		}
-		if (updateBeliefs) {
-			net.updateBeliefs();
+		if (afterUpdate) {
+			this.net.updateBeliefs();
 		}
-		return net;
+		return true;
 	}
 
-	public InfluenceDiagramNetwork setEvidence(String nodeId, String evidenceValue, boolean updateBeliefs) {
-		if (this.checkEvidenceSetPossible(nodeId, evidenceValue)) {
-			net.setEvidence(nodeId, evidenceValue);
+	/**
+	 * @param nodeId
+	 *            Knoten-Id
+	 * @param evidenceValue
+	 *            Zustand, der dem Knoten als Evidenz zugewiesen werden soll
+	 * @param checkEvidence
+	 *            Bei true wird die Evidenz vor dem Setzen hinsichtlich ihrer
+	 *            Gültigkeit im aktuellen Influence Diagram geprüft.
+	 * @param afterUpdate
+	 *            Bei true werden die Wahrscheinlichkeitsverteilungen des
+	 *            InfluenceDiagrams aktualisiert. aktualisiert
+	 * @return true, wenn die Evidenz erfolgreich gesetzt wurde
+	 * @throws ValueNotReadableException
+	 *             Wenn der Wert bei der Validitätsprüfung der Evidenz nicht
+	 *             ausgelesen werden konnte.
+	 */
+	public boolean setEvidence(String nodeId, String evidenceValue, boolean checkEvidence, boolean afterUpdate)
+			throws ValueNotReadableException {
+		if (checkEvidence) {
+			boolean isValidEvidence = this.isValidEvidence(nodeId, evidenceValue);
+			if (!isValidEvidence) {
+				return false;
+			}
 		}
-		if (updateBeliefs) {
-			net.updateBeliefs();
+		this.net.setEvidence(nodeId, evidenceValue);
+		if (afterUpdate) {
+			this.net.updateBeliefs();
 		}
-		return net;
+		return true;
 	}
 
-	public boolean checkEvidenceSetPossible(String nodeId, String evidenceValue) {
+	public boolean isValidEvidence(String nodeId, String evidenceValue) throws ValueNotReadableException {
+		int outcomeIndex = -1;
 		if (this.net.getNodeType(nodeId) == NodeType.Cpt) {
+			// Wenn es sich um eine propagierte Evidenz handelt, braucht sie
+			// nicht gesetzt werden, da sie schon existiert.
 			if (this.net.isPropagatedEvidence(nodeId)) {
 				return false;
 			}
-			int outcomeIndex = Arrays.asList(this.net.getOutcomeIds(nodeId)).indexOf(evidenceValue);
-			if (outcomeIndex < 0) {
+			// Wenn indexOf -1 zurückgibt, existiert dieser Zustand nicht. Eine
+			// Evidenz
+			// für einen nicht existierenden Zustand kann nicht gesetzt werden.
+			outcomeIndex = Arrays.asList(this.net.getOutcomeIds(nodeId)).indexOf(evidenceValue);
+			if (outcomeIndex == -1) {
 				return false;
 			}
-
-			double probability = this.net.getNodeValue(nodeId)[outcomeIndex];
-			return probability > 0;
+			try {
+				return this.net.getNodeValue(nodeId)[outcomeIndex] > 0;
+			} catch (SMILEException ex) {
+				throw new ValueNotReadableException("Value could not be read: Network update is necessary");
+			}
 		}
 		return false;
 	}

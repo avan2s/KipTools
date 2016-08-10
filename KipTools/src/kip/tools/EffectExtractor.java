@@ -6,16 +6,19 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import kip.tools.exception.PeriodNotValidException;
+import kip.tools.exception.ValueNotReadableException;
 import kip.tools.model.ExpectedValue;
 import kip.tools.model.KipGoal;
 import smile.Network;
+import smile.SMILEException;
 
 public class EffectExtractor {
 
 	private InfluenceDiagramNetwork solvedNetwork;
-	
+
 	public EffectExtractor() {
-		
+
 	}
 
 	public EffectExtractor(InfluenceDiagramNetwork solvedNetwork) {
@@ -28,21 +31,26 @@ public class EffectExtractor {
 		return expectedValue;
 	}
 
-	private double extractExpectedEffect(KipGoal goal) throws Exception {
-		int tVon = goal.getGoalstart_period();
-		int tBis = goal.getGoalend_period();
-		if ((tBis < 0 || tVon < 0) || tBis < tVon) {
-			throw new Exception("Periods not valid!");
-		}
-
+	private double extractExpectedEffect(KipGoal goal) throws PeriodNotValidException, ValueNotReadableException {
 		double expectedEffect = 0;
-
-		for (int period = tVon; period <= tBis; period++) {
-			List<String> goalNodes = this.getAllNodeIdsByPeriod(period,goal);
-			for (String goalNode : goalNodes) {
-				double effectInPeriod = this.solvedNetwork.getNodeValue(goalNode)[0];
-				expectedEffect = expectedEffect + effectInPeriod;
+		try {
+			int tVon = goal.getGoalstart_period();
+			int tBis = goal.getGoalend_period();
+			if ((tBis < 0 || tVon < 0) || tBis < tVon) {
+				throw new PeriodNotValidException("Periods not valid. Endperiod can't be lower than startperiod!");
 			}
+
+			expectedEffect = 0;
+
+			for (int period = tVon; period <= tBis; period++) {
+				List<String> goalNodes = this.getAllNodeIdsByPeriod(period, goal);
+				for (String goalNode : goalNodes) {
+					double effectInPeriod = this.solvedNetwork.getNodeValue(goalNode)[0];
+					expectedEffect = expectedEffect + effectInPeriod;
+				}
+			}
+		} catch (SMILEException e) {
+			throw new ValueNotReadableException();
 		}
 		return expectedEffect;
 	}

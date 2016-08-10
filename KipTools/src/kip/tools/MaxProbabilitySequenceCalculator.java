@@ -30,7 +30,7 @@ public class MaxProbabilitySequenceCalculator extends SequenceCalculator {
 			double maxProbability = 0;
 			String maxProbabilityAction = null;
 			int maxBenefit = 0;
-			
+
 			SimPeriod simPeriod = new SimPeriod();
 			simPeriod.setPeriod(period);
 			this.influenceDiagramExtractor.generateNodeId(period);
@@ -42,7 +42,7 @@ public class MaxProbabilitySequenceCalculator extends SequenceCalculator {
 				double benefit = this.benefitCalculator.calculateBenefit(currentPeriod, period, action, goals);
 				SimAct simAct = this.benefitCalculator.getSimAct();
 				simPeriod.addSimAct(simAct);
-				
+
 				if (probability > maxProbability) {
 					maxProbabilityAction = action;
 					maxProbability = probability;
@@ -61,7 +61,7 @@ public class MaxProbabilitySequenceCalculator extends SequenceCalculator {
 			nextBestAction.setSimulatedValues(simPeriod.getSimActByAction(maxProbabilityAction));
 			this.kipSequence.getSequence().add(nextBestAction);
 			this.kipSequence.getSimPeriods().add(simPeriod);
-			this.evidenceSetter.setEvidence(nodeId, maxProbabilityAction, true);
+			this.evidenceSetter.setEvidence(nodeId, maxProbabilityAction, true, true);
 		}
 		return this.kipSequence;
 	}

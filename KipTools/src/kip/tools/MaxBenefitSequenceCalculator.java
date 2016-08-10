@@ -17,14 +17,15 @@ public class MaxBenefitSequenceCalculator extends SequenceCalculator {
 		this.reset();
 		for (int period = currentPeriod; period <= lastPeriod; period++) {
 			// Nutzenerbringenste Aktion für die Periode ermitteln
-			NextBestAction nextBestAction = this.nextActionCalculator.calculateNextBestAction(currentPeriod, period, goals);
+			NextBestAction nextBestAction = this.nextActionCalculator.calculateNextBestAction(currentPeriod, period,
+					goals);
 			this.kipSequence.getSequence().add(nextBestAction);
 			// Daraus einhergehende Simulationswerte bestimmen
 			this.kipSequence.getSimPeriods().add(this.nextActionCalculator.getSimPeriod());
-			
+
 			// Entscheidung in der Periode als Evidenz setzen
 			String nodeId = this.influenceDiagramExtractor.generateNodeId(period);
-			this.evidenceSetter.setEvidence(nodeId, nextBestAction.getAction(), true);
+			this.evidenceSetter.setEvidence(nodeId, nextBestAction.getAction(), true, true);
 		}
 		return this.kipSequence;
 	}

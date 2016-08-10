@@ -1,3 +1,4 @@
+
 package kip.tools;
 
 import java.util.List;
@@ -44,7 +45,7 @@ public class BenefitCalculator {
 		String nodeId = this.elementExtractor.generateNodeId(periodForRecommendation);
 
 		// Prüfe ob Evidenz gesetzt werden kann
-		if (!this.evidenceSetter.checkEvidenceSetPossible(nodeId, action))
+		if (!this.evidenceSetter.isValidEvidence(nodeId, action))
 			throw new Exception("invalid action for decisionnode: " + nodeId);
 
 		// Prüfe, ob die Periode gültig ist
@@ -53,7 +54,7 @@ public class BenefitCalculator {
 
 		// Setze Evidenz und löse das Einflussdiagramm (updateBeliefs=true)
 		// Einflussdiagramm wird verändert, da es als Referenz übergeben wurde
-		this.evidenceSetter.setEvidence(nodeId, action, true);
+		this.evidenceSetter.setEvidence(nodeId, action, false, true);
 
 		this.simAct = new SimAct();
 		this.simAct.setAction(action);
