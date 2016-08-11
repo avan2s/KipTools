@@ -21,6 +21,15 @@ public class KipSequence implements Serializable {
 		this.setSimPeriods(new ArrayList<>());
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder("KipSequence [");
+		for (NextBestAction nextBestAction : sequence) {
+			sb.append(" -> ").append(nextBestAction.getAction());
+		}
+		return sb.append(" ]").replace(0, 2, "").toString();
+	}
+
 	public List<NextBestAction> getSequence() {
 		return sequence;
 	}

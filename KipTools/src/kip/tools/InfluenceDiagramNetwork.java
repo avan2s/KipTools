@@ -7,12 +7,12 @@ import smile.Network;
 public class InfluenceDiagramNetwork extends Network implements Serializable {
 	// http://stackoverflow.com/questions/95181/java-serialization-with-non-serializable-parts
 	private static final long serialVersionUID = 1L;
-	
+
 	private String periodSeperator;
 	private String decisionAbbreviation;
 
 	public InfluenceDiagramNetwork() {
-		super();
+		this.periodSeperator = "_";
 	}
 
 	public InfluenceDiagramNetwork(String periodSeperator, String decisionAbbreviation) {

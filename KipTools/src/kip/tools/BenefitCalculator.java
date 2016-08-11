@@ -23,13 +23,28 @@ public class BenefitCalculator {
 	private SimAct simAct;
 
 	public BenefitCalculator(InfluenceDiagramNetwork network) {
+		this.initialize(network);
+	}
+
+	public BenefitCalculator(EffectExtractor effectExtractor, EvidenceSetter evidenceSetter,
+			InfluenceDiagramElementExtractor elementExtractor, InfluenceDiagramNetwork network) {
+		this.initialize(network);
+		this.effectExtractor = effectExtractor;
+		this.evidenceSetter = evidenceSetter;
+		this.elementExtractor = elementExtractor;
+	}
+
+
+	private void initialize(InfluenceDiagramNetwork network) {
 		this.network = network;
-		this.effectExtractor = new EffectExtractor();
+		this.effectExtractor = new EffectExtractor(network);
 		this.elementExtractor = new InfluenceDiagramElementExtractor(network);
 		this.evidenceSetter = new EvidenceSetter(network);
+
 		this.simAct = new SimAct();
 		try {
 			this.optimizationModel = new IloCplex();
+			this.objectiveExpression = this.optimizationModel.linearNumExpr();
 		} catch (IloException e) {
 			e.printStackTrace();
 		}
@@ -42,11 +57,12 @@ public class BenefitCalculator {
 		this.resetModel();
 
 		// Erhalte die NodeId (den Zufallsentscheidungsknoten)
-		String nodeId = this.elementExtractor.generateNodeId(periodForRecommendation);
+		String nodeAbbreviation = this.network.getDecisionAbbreviation();
+		String nodeId = this.elementExtractor.generateNodeId(nodeAbbreviation, periodForRecommendation, false);
 
-		// Prüfe ob Evidenz gesetzt werden kann
-		if (!this.evidenceSetter.isValidEvidence(nodeId, action))
-			throw new Exception("invalid action for decisionnode: " + nodeId);
+//		// Prüfe ob Evidenz gesetzt werden kann
+//		if (!this.evidenceSetter.isValidEvidence(nodeId, action))
+//			throw new Exception("invalid action for decisionnode: " + nodeId);
 
 		// Prüfe, ob die Periode gültig ist
 		if (periodForRecommendation < currentPeriod)
@@ -69,6 +85,8 @@ public class BenefitCalculator {
 		}
 
 		// Löse das Optimierungsmodell
+		this.optimizationModel.addMaximize(this.objectiveExpression);
+		this.optimizationModel.exportModel(action+".lp");
 		if (this.optimizationModel.solve()) {
 			return this.optimizationModel.getObjValue();
 		}
@@ -76,12 +94,9 @@ public class BenefitCalculator {
 	}
 
 	private void resetModel() {
-		try {
-			this.optimizationModel = null;
-			this.optimizationModel = new IloCplex();
-		} catch (IloException e) {
-			e.printStackTrace();
-		}
+		this.optimizationModel = null;
+		this.objectiveExpression = null;
+		this.initialize(network);
 	}
 
 	// Abbildung 39:
@@ -107,18 +122,6 @@ public class BenefitCalculator {
 		objectiveExpression.addTerm(pUp, deviationUp);
 		objectiveExpression.addTerm(pDown, deviationDown);
 	}
-
-	// public void reset(){
-	// this.clear();
-	// this.;
-	// }
-	//
-	// public void clear(){
-	// this.effectExtractor = null;
-	// this.evidenceSetter = null;
-	// this.elementExtractor = null;
-	// this.optimizationModel = null;
-	// }
 
 	public IloCplex getOptimizationModel() {
 		return optimizationModel;

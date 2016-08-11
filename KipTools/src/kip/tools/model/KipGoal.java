@@ -30,6 +30,13 @@ public class KipGoal implements Serializable {
 	}
 
 	@Override
+	public String toString() {
+		return "KipGoal [goalTarget=" + goalTarget + ", abbreviation=" + abbreviation + ", goalstart_period="
+				+ goalstart_period + ", goalend_period=" + goalend_period + ", goalValue=" + goalValue + ", goalWeight="
+				+ goalWeight + ", goalEffect=" + goalEffect + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;

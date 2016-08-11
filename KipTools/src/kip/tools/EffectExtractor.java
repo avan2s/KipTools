@@ -1,9 +1,5 @@
 package kip.tools;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 import kip.tools.exception.PeriodNotValidException;
@@ -15,14 +11,17 @@ import smile.SMILEException;
 
 public class EffectExtractor {
 
-	private InfluenceDiagramNetwork solvedNetwork;
+	private InfluenceDiagramNetwork network;
+	private InfluenceDiagramElementExtractor extractor;
 
-	public EffectExtractor() {
-
+	public EffectExtractor(InfluenceDiagramNetwork network) {
+		this.extractor = new InfluenceDiagramElementExtractor(network);
+		this.network = network;
 	}
 
-	public EffectExtractor(InfluenceDiagramNetwork solvedNetwork) {
-		this.solvedNetwork = solvedNetwork;
+	public EffectExtractor(InfluenceDiagramNetwork network, InfluenceDiagramElementExtractor extractor) {
+		this.network = network;
+		this.extractor = extractor;
 	}
 
 	public final ExpectedValue extract(KipGoal goal) throws Exception {
@@ -43,9 +42,9 @@ public class EffectExtractor {
 			expectedEffect = 0;
 
 			for (int period = tVon; period <= tBis; period++) {
-				List<String> goalNodes = this.getAllNodeIdsByPeriod(period, goal);
+				List<String> goalNodes = this.extractor.getAllNodeIdsByPeriod(period, goal);
 				for (String goalNode : goalNodes) {
-					double effectInPeriod = this.solvedNetwork.getNodeValue(goalNode)[0];
+					double effectInPeriod = this.network.getNodeValue(goalNode)[0];
 					expectedEffect = expectedEffect + effectInPeriod;
 				}
 			}
@@ -55,32 +54,20 @@ public class EffectExtractor {
 		return expectedEffect;
 	}
 
-	private List<String> getAllNodeIdsByPeriod(int period, KipGoal goal) {
-		if (period == 0) {
-			return new ArrayList<String>();
-		}
-		List<String> goalNodes = new LinkedList<String>(Arrays.asList(this.solvedNetwork.getAllNodeIds()));
-		String nodeAbbreviation = goal.getAbbreviation();
-		String seperator = this.solvedNetwork.getPeriodSeperator();
-
-		for (Iterator<String> iterator = goalNodes.iterator(); iterator.hasNext();) {
-			String nodeName = iterator.next();
-			StringBuilder sbPattern = new StringBuilder(nodeAbbreviation);
-			sbPattern.append(seperator).append("(.*)").append(seperator).append(period);
-
-			if (!nodeName.matches(sbPattern.toString())) {
-				iterator.remove();
-			}
-		}
-		return goalNodes;
-	}
-
 	public Network getNetwork() {
-		return solvedNetwork;
+		return network;
 	}
 
 	public void setNetwork(InfluenceDiagramNetwork network) {
-		this.solvedNetwork = network;
+		this.network = network;
+	}
+
+	public InfluenceDiagramElementExtractor getExtractor() {
+		return extractor;
+	}
+
+	public void setExtractor(InfluenceDiagramElementExtractor extractor) {
+		this.extractor = extractor;
 	}
 
 }

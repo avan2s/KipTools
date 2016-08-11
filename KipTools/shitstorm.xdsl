@@ -606,7 +606,7 @@
 		</utility>
 		<utility id="KZ_nichts_2">
 			<parents>nichts_Abr_2</parents>
-			<utilities>0 0</utilities>
+			<utilities>-25 0</utilities>
 		</utility>
 		<cpt id="Einfluss_SP_Smtb_2">
 			<state id="negativ" />
@@ -632,7 +632,7 @@
 		</cpt>
 		<utility id="SP_nichts_2">
 			<parents>nichts_Abr_2</parents>
-			<utilities>0 0</utilities>
+			<utilities>25 0</utilities>
 		</utility>
 		<utility id="SP_2">
 			<parents>R_SP_1 R_SP_2</parents>
@@ -863,7 +863,7 @@
 		</utility>
 		<utility id="KZ_nichts_3">
 			<parents>nichts_Abr_3</parents>
-			<utilities>0 0</utilities>
+			<utilities>-25 0</utilities>
 		</utility>
 		<cpt id="Einfluss_SP_Smtb_3">
 			<state id="negativ" />
@@ -889,7 +889,7 @@
 		</cpt>
 		<utility id="SP_nichts_3">
 			<parents>nichts_Abr_3</parents>
-			<utilities>0 0</utilities>
+			<utilities>25 0</utilities>
 		</utility>
 		<utility id="SP_3">
 			<parents>R_SP_2 R_SP_3</parents>
@@ -1120,7 +1120,7 @@
 		</utility>
 		<utility id="KZ_nichts_4">
 			<parents>nichts_Abr_4</parents>
-			<utilities>0 0</utilities>
+			<utilities>-25 0</utilities>
 		</utility>
 		<cpt id="Einfluss_SP_Smtb_4">
 			<state id="negativ" />
@@ -1146,7 +1146,7 @@
 		</cpt>
 		<utility id="SP_nichts_4">
 			<parents>nichts_Abr_4</parents>
-			<utilities>0 0</utilities>
+			<utilities>25 0</utilities>
 		</utility>
 		<utility id="SP_4">
 			<parents>R_SP_3 R_SP_4</parents>

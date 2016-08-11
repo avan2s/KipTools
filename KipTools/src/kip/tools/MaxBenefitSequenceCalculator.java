@@ -12,6 +12,11 @@ public class MaxBenefitSequenceCalculator extends SequenceCalculator {
 		super(network);
 	}
 
+	public MaxBenefitSequenceCalculator(NextActionCalculator nextActionCalculator, EvidenceSetter evidenceSetter,
+			InfluenceDiagramElementExtractor influenceDiagramExtractor, InfluenceDiagramNetwork network) {
+		super(nextActionCalculator,evidenceSetter,influenceDiagramExtractor,network);
+	}
+
 	@Override
 	public KipSequence calculate(int currentPeriod, int lastPeriod, List<KipGoal> goals) throws Exception {
 		this.reset();
@@ -24,8 +29,9 @@ public class MaxBenefitSequenceCalculator extends SequenceCalculator {
 			this.kipSequence.getSimPeriods().add(this.nextActionCalculator.getSimPeriod());
 
 			// Entscheidung in der Periode als Evidenz setzen
-			String nodeId = this.influenceDiagramExtractor.generateNodeId(period);
-			this.evidenceSetter.setEvidence(nodeId, nextBestAction.getAction(), true, true);
+			String nodeAbbreviation = this.network.getDecisionAbbreviation();
+			String nodeId = this.influenceDiagramExtractor.generateNodeId(nodeAbbreviation, period, false);
+			this.evidenceSetter.setEvidence(nodeId, nextBestAction.getAction(), false, true);
 		}
 		return this.kipSequence;
 	}

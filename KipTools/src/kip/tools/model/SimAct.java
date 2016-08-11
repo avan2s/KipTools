@@ -15,6 +15,11 @@ public class SimAct implements Serializable {
 		this.simGoalValues = new ArrayList<>();
 	}
 
+	@Override
+	public String toString() {
+		return "SimAct [action=" + action + ",\nsimGoalValues=" + simGoalValues + "]";
+	}
+
 	public boolean addSimGoal(KipGoal goal, ExpectedValue expectedValue) {
 		if (!this.simGoalValues.contains(goal)) {
 			SimGoal simGoal = new SimGoal(goal, expectedValue);

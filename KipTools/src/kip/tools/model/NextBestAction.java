@@ -6,17 +6,22 @@ public class NextBestAction implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	private int period;
 	private String action;
 	private double benefit;
-	private SimAct simulatedValues;
+//	private SimAct simulatedValues;
 
 	public NextBestAction() {
-		this.simulatedValues = new SimAct();
 	}
 
 	public NextBestAction(String action, double benefit) {
 		this.action = action;
 		this.benefit = benefit;
+	}
+
+	@Override
+	public String toString() {
+		return "NextBestAction [action=" + action + ", benefit=" + benefit + "]";
 	}
 
 	public String getAction() {
@@ -35,12 +40,20 @@ public class NextBestAction implements Serializable {
 		this.benefit = benefit;
 	}
 
-	public SimAct getSimulatedValues() {
-		return simulatedValues;
+//	public SimAct getSimulatedValues() {
+//		return simulatedValues;
+//	}
+//
+//	public void setSimulatedValues(SimAct simulatedValues) {
+//		this.simulatedValues = simulatedValues;
+//	}
+
+	public int getPeriod() {
+		return period;
 	}
 
-	public void setSimulatedValues(SimAct simulatedValues) {
-		this.simulatedValues = simulatedValues;
+	public void setPeriod(int period) {
+		this.period = period;
 	}
 
 }
