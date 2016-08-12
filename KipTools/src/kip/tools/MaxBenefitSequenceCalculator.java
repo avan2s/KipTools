@@ -26,7 +26,7 @@ public class MaxBenefitSequenceCalculator extends SequenceCalculator {
 					goals);
 			this.kipSequence.getSequence().add(nextBestAction);
 			// Daraus einhergehende Simulationswerte bestimmen
-			this.kipSequence.getSimPeriods().add(this.nextActionCalculator.getSimPeriod());
+			this.simPeriods.add(this.nextActionCalculator.getSimPeriod());
 
 			// Entscheidung in der Periode als Evidenz setzen
 			String nodeAbbreviation = this.network.getDecisionAbbreviation();

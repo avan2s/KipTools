@@ -14,6 +14,8 @@ import kip.tools.SequenceCalculator;
 import kip.tools.model.KipEvidence;
 import kip.tools.model.KipGoal;
 import kip.tools.model.KipSequence;
+import kip.tools.model.NextBestAction;
+import kip.tools.model.SimPeriod;
 
 public class KipToolsClient {
 
@@ -47,15 +49,16 @@ public class KipToolsClient {
 		InfluenceDiagramElementExtractor influenceDiagramExtractor = new InfluenceDiagramElementExtractor(net);
 		EffectExtractor effectExtractor = new EffectExtractor(net);
 		effectExtractor.setExtractor(influenceDiagramExtractor);
-		
+
 		BenefitCalculator benefitCalculator = new BenefitCalculator(net);
 		benefitCalculator.setEffectExtractor(effectExtractor);
 		benefitCalculator.setElementExtractor(influenceDiagramExtractor);
 		benefitCalculator.setEvidenceSetter(evidenceSetter);
-		
+
 		NextActionCalculator nextActionCalc = new NextActionCalculator(net);
 		nextActionCalc.setExtractor(influenceDiagramExtractor);
 		nextActionCalc.setBenefitCalculator(benefitCalculator);
+		nextActionCalc.setNothingActionAllowed(false);
 		SequenceCalculator sequenceCalculatorB = new MaxBenefitSequenceCalculator(net);
 		sequenceCalculatorB.setEvidenceSetter(evidenceSetter);
 		sequenceCalculatorB.setInfluenceDiagramExtractor(influenceDiagramExtractor);
@@ -64,7 +67,7 @@ public class KipToolsClient {
 		sequenceCalculatorP.setEvidenceSetter(evidenceSetter);
 		sequenceCalculatorP.setInfluenceDiagramExtractor(influenceDiagramExtractor);
 		sequenceCalculatorP.setNothingActionAllowed(false);
-		
+
 		// Bisherige Evidenzen anlegen und setzen
 		List<KipEvidence> evidences = new ArrayList<>();
 		evidences.add(new KipEvidence("SMTb", "enabled"));
@@ -81,14 +84,13 @@ public class KipToolsClient {
 		sequenceCalculatorB.calculate(0, 3, goals);
 
 		KipSequence kipSequence = sequenceCalculatorB.getKipSequence();
+		List<SimPeriod> simPeriods = sequenceCalculatorB.getSimPeriods();
 
 		System.out.println(kipSequence);
 
-		// NextActionCalculator nextActionCalculator = new
-		// NextActionCalculator(net);
-		// nextActionCalculator.calculateNextBestAction(0, 0, goals);
-		// NextBestAction nextBestAction =
-		// nextActionCalculator.getNextBestAction();
+		nextActionCalc.calculateNextBestAction(0, 0, goals);
+		NextBestAction nextBestAction = nextActionCalc.getNextBestAction();
+		SimPeriod simPeriod = nextActionCalc.getSimPeriod();
 
 		// EffectExtractor effExtractor = new EffectExtractor(net);
 		// ExpectedValue evK = effExtractor.extract(gtK);
@@ -96,7 +98,7 @@ public class KipToolsClient {
 		// ExpectedValue evKz = effExtractor.extract(gtKz);
 		// ExpectedValue evSP = effExtractor.extract(gtSP);
 
-		// System.out.println(nextBestAction);
+		System.out.println(nextBestAction);
 	}
 
 }

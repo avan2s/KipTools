@@ -28,8 +28,9 @@ public class MaxProbabilitySequenceCalculator extends SequenceCalculator {
 	public KipSequence calculate(int currentPeriod, int lastPeriod, List<KipGoal> goals) throws Exception {
 		NextBestAction nextBestAction = this.nextActionCalculator.calculateNextBestAction(currentPeriod, currentPeriod,
 				goals);
+		this.reset();
 		this.kipSequence.getSequence().add(nextBestAction);
-		this.kipSequence.getSimPeriods().add(this.nextActionCalculator.getSimPeriod());
+		this.simPeriods.add(this.nextActionCalculator.getSimPeriod());
 
 		String nodeAbbreviation = this.network.getDecisionAbbreviation();
 		String nodeId = this.influenceDiagramExtractor.generateNodeId(nodeAbbreviation, currentPeriod, false);
@@ -37,7 +38,6 @@ public class MaxProbabilitySequenceCalculator extends SequenceCalculator {
 
 		for (int period = currentPeriod + 1; period <= lastPeriod; period++) {
 			// Entscheidung in der Periode als Evidenz setzen
-
 			nodeId = this.influenceDiagramExtractor.generateNodeId(nodeAbbreviation, period, false);
 			double maxProbability = 0;
 			String maxProbabilityAction = null;
@@ -78,18 +78,16 @@ public class MaxProbabilitySequenceCalculator extends SequenceCalculator {
 					}
 				}
 			}
-			
+
 			if (maxProbabilityAction != null) {
 				nextBestAction.setAction(maxProbabilityAction);
 				nextBestAction.setBenefit(maxBenefit);
-				this.kipSequence.getSimPeriods().add(simPeriod);
+				this.simPeriods.add(simPeriod);
 				this.evidenceSetter.setEvidence(nodeId, maxProbabilityAction, false, true);
-			}
-			else{
+			} else {
 				maxProbabilityAction = "!No Action available for period " + period + "!";
 				nextBestAction.setAction(maxProbabilityAction);
 				nextBestAction.setBenefit(maxBenefit);
-			
 			}
 			this.kipSequence.getSequence().add(nextBestAction);
 		}

@@ -9,16 +9,13 @@ public class KipSequence implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private List<NextBestAction> sequence;
-	private List<SimPeriod> simPeriods;
 
 	public KipSequence() {
 		this.sequence = new ArrayList<>();
-		this.simPeriods = new ArrayList<>();
 	}
 
-	public KipSequence(List<NextBestAction> sequence, List<SimPeriod> simPeriodSet) {
+	public KipSequence(List<NextBestAction> sequence) {
 		this.sequence = sequence;
-		this.setSimPeriods(new ArrayList<>());
 	}
 
 	@Override
@@ -36,14 +33,6 @@ public class KipSequence implements Serializable {
 
 	public void setSequence(List<NextBestAction> sequence) {
 		this.sequence = sequence;
-	}
-
-	public List<SimPeriod> getSimPeriods() {
-		return simPeriods;
-	}
-
-	public void setSimPeriods(List<SimPeriod> simPeriods) {
-		this.simPeriods = simPeriods;
 	}
 
 }

@@ -1,5 +1,6 @@
 package kip.tools;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import kip.tools.model.KipGoal;
@@ -24,6 +25,7 @@ public abstract class SequenceCalculator {
 		this.evidenceSetter = new EvidenceSetter(network);
 		this.influenceDiagramExtractor = new InfluenceDiagramElementExtractor(network);
 		this.kipSequence = new KipSequence();
+		this.simPeriods = new ArrayList<>();
 	}
 
 	public SequenceCalculator(NextActionCalculator nextActionCalculator, EvidenceSetter evidenceSetter,
@@ -40,8 +42,8 @@ public abstract class SequenceCalculator {
 	public abstract KipSequence calculate(int currentPeriod, int lastPeriod, List<KipGoal> goals) throws Exception;
 
 	protected void reset() {
-		this.kipSequence.getSequence().clear();
-		this.kipSequence.getSimPeriods().clear();
+		this.kipSequence = new KipSequence();
+		this.simPeriods = new ArrayList<>();
 	}
 
 	public NextActionCalculator getNextActionCalculator() {

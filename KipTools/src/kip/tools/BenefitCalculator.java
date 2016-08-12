@@ -53,7 +53,7 @@ public class BenefitCalculator {
 	public double calculateBenefit(int currentPeriod, int periodForRecommendation, String action, List<KipGoal> goals)
 			throws Exception {
 		// Optimierungsmodell zurücksetzen
-		this.resetModel();
+		this.reset();
 
 		// Erhalte die NodeId (den Zufallsentscheidungsknoten)
 		String nodeAbbreviation = this.network.getDecisionAbbreviation();
@@ -67,7 +67,6 @@ public class BenefitCalculator {
 		// Einflussdiagramm wird verändert, da es als Referenz übergeben wurde
 		this.evidenceSetter.setEvidence(nodeId, action, false, true);
 
-		this.simAct = new SimAct();
 		this.simAct.setAction(action);
 
 		for (KipGoal kipGoal : goals) {
@@ -88,7 +87,7 @@ public class BenefitCalculator {
 		throw new Exception("No Benefit could be calculated - invalid model!");
 	}
 
-	private void resetModel() {
+	private void reset() {
 		this.optimizationModel = null;
 		this.objectiveExpression = null;
 		this.initialize(network);

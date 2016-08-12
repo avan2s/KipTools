@@ -33,13 +33,14 @@ public class NextActionCalculator {
 	// Abbildung: 60
 	public NextBestAction calculateNextBestAction(int currentPeriod, int periodForRecommendation, List<KipGoal> goals)
 			throws Exception {
+		this.reset();
 		if (currentPeriod > periodForRecommendation) {
 			throw new Exception("invalid current Period: Can't recommend a decision, which is already taken");
 		}
 		this.nextBestAction = new NextBestAction();
 		this.nextBestAction.setBenefit(-Double.MAX_VALUE);
 
-		this.simPeriod = new SimPeriod();
+		this.simPeriod.setPeriod(periodForRecommendation);
 
 		String nodeId = extractor.generateNodeId(this.network.getDecisionAbbreviation(), periodForRecommendation,
 				false);
@@ -64,6 +65,12 @@ public class NextActionCalculator {
 		}
 		this.nextBestAction.setPeriod(periodForRecommendation);
 		return this.nextBestAction;
+	}
+
+	private void reset() {
+		this.simPeriod = new SimPeriod();
+		this.benefit = 0;
+		this.nextBestAction = new NextBestAction();
 	}
 
 	public InfluenceDiagramNetwork getNetwork() {

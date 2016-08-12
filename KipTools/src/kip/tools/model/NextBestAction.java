@@ -9,7 +9,6 @@ public class NextBestAction implements Serializable {
 	private int period;
 	private String action;
 	private double benefit;
-//	private SimAct simulatedValues;
 
 	public NextBestAction() {
 	}
