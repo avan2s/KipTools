@@ -34,7 +34,6 @@ public class BenefitCalculator {
 		this.elementExtractor = elementExtractor;
 	}
 
-
 	private void initialize(InfluenceDiagramNetwork network) {
 		this.network = network;
 		this.effectExtractor = new EffectExtractor(network);
@@ -60,10 +59,6 @@ public class BenefitCalculator {
 		String nodeAbbreviation = this.network.getDecisionAbbreviation();
 		String nodeId = this.elementExtractor.generateNodeId(nodeAbbreviation, periodForRecommendation, false);
 
-//		// Prüfe ob Evidenz gesetzt werden kann
-//		if (!this.evidenceSetter.isValidEvidence(nodeId, action))
-//			throw new Exception("invalid action for decisionnode: " + nodeId);
-
 		// Prüfe, ob die Periode gültig ist
 		if (periodForRecommendation < currentPeriod)
 			throw new Exception("invalid current Period: Can't recommend a decision, which is already taken");
@@ -86,7 +81,7 @@ public class BenefitCalculator {
 
 		// Löse das Optimierungsmodell
 		this.optimizationModel.addMaximize(this.objectiveExpression);
-		this.optimizationModel.exportModel(action+".lp");
+		this.optimizationModel.exportModel(action + ".lp");
 		if (this.optimizationModel.solve()) {
 			return this.optimizationModel.getObjValue();
 		}
@@ -101,8 +96,13 @@ public class BenefitCalculator {
 
 	// Abbildung 39:
 	private void addGoalToOptimizationModel(final KipGoal goal, final double expectedValue) throws IloException {
-		double pUp = goal.getGoalWeight();
+		double pUp;
 		double pDown = -goal.getGoalWeight();
+		if (goal.getGoalEffect().equals(GoalEffect.NEUTRAL)) {
+			pUp = -goal.getGoalWeight();
+		} else {
+			pUp = goal.getGoalWeight();
+		}
 
 		double utilityOpt = UtilityTransformer.NORM_FACTOR;
 		if (goal.getGoalEffect().equals(GoalEffect.NEGATIVE)) {
