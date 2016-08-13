@@ -1,6 +1,6 @@
 package kip.enums;
 
-public enum GoalEffect {
+public enum KipGoalEffect {
 	POSITIVE,
 	NEGATIVE,
 	NEUTRAL

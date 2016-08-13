@@ -7,7 +7,7 @@ import ilog.concert.IloException;
 import ilog.concert.IloLinearNumExpr;
 import ilog.concert.IloNumVar;
 import ilog.cplex.IloCplex;
-import kip.enums.GoalEffect;
+import kip.enums.KipGoalEffect;
 import kip.tools.model.ExpectedValue;
 import kip.tools.model.KipGoal;
 import kip.tools.model.SimAct;
@@ -97,14 +97,14 @@ public class BenefitCalculator {
 	private void addGoalToOptimizationModel(final KipGoal goal, final double expectedValue) throws IloException {
 		double pUp;
 		double pDown = -goal.getGoalWeight();
-		if (goal.getGoalEffect().equals(GoalEffect.NEUTRAL)) {
+		if (goal.getGoalEffect().equals(KipGoalEffect.NEUTRAL)) {
 			pUp = -goal.getGoalWeight();
 		} else {
 			pUp = goal.getGoalWeight();
 		}
 
 		double utilityOpt = UtilityTransformer.NORM_FACTOR;
-		if (goal.getGoalEffect().equals(GoalEffect.NEGATIVE)) {
+		if (goal.getGoalEffect().equals(KipGoalEffect.NEGATIVE)) {
 			utilityOpt = -utilityOpt;
 		}
 

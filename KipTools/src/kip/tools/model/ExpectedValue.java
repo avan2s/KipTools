@@ -2,7 +2,7 @@ package kip.tools.model;
 
 import java.io.Serializable;
 
-import kip.enums.GoalEffect;
+import kip.enums.KipGoalEffect;
 import kip.tools.UtilityTransformer;
 
 public class ExpectedValue implements Serializable {
@@ -19,7 +19,7 @@ public class ExpectedValue implements Serializable {
 		return uniformUtility;
 	}
 
-	public void setUniformUtility(final double uniformUtility, final double goalValue, final GoalEffect effect) {
+	public void setUniformUtility(final double uniformUtility, final double goalValue, final KipGoalEffect effect) {
 		this.uniformUtility = uniformUtility;
 		this.unitValue = UtilityTransformer.calcUnitValue(uniformUtility, goalValue, effect);
 	}
@@ -28,7 +28,7 @@ public class ExpectedValue implements Serializable {
 		return unitValue;
 	}
 
-	public void setUnitValue(final double unitValue, final double goalValue, final GoalEffect effect) {
+	public void setUnitValue(final double unitValue, final double goalValue, final KipGoalEffect effect) {
 		this.unitValue = unitValue;
 		this.uniformUtility = UtilityTransformer.calcUniformUtility(unitValue, goalValue, effect);
 	}

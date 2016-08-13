@@ -2,7 +2,7 @@ package kip.tools.model;
 
 import java.io.Serializable;
 
-import kip.enums.GoalEffect;
+import kip.enums.KipGoalEffect;
 
 public class KipGoal implements Serializable {
 
@@ -14,13 +14,13 @@ public class KipGoal implements Serializable {
 	private int goalend_period;
 	private double goalValue;
 	private double goalWeight;
-	private GoalEffect goalEffect;
+	private KipGoalEffect goalEffect;
 
 	public KipGoal() {
 	}
 
 	public KipGoal(String goalTarget, int goalstart_period, int goalend_period, String abbreviation, double goalValue,
-			GoalEffect effect) {
+			KipGoalEffect effect) {
 		this.goalTarget = goalTarget;
 		this.goalstart_period = goalstart_period;
 		this.goalend_period = goalend_period;
@@ -125,11 +125,11 @@ public class KipGoal implements Serializable {
 		this.goalValue = goalValue;
 	}
 
-	public GoalEffect getGoalEffect() {
+	public KipGoalEffect getGoalEffect() {
 		return goalEffect;
 	}
 
-	public void setGoalEffect(GoalEffect goalEffect) {
+	public void setGoalEffect(KipGoalEffect goalEffect) {
 		this.goalEffect = goalEffect;
 	}
 

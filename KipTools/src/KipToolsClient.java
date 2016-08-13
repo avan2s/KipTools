@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import kip.enums.GoalEffect;
+import kip.enums.KipGoalEffect;
 import kip.tools.BenefitCalculator;
 import kip.tools.EffectExtractor;
 import kip.tools.EvidenceSetter;
@@ -21,15 +21,15 @@ public class KipToolsClient {
 
 	public static void main(String[] args) throws Exception {
 		// Ziele definieren
-		KipGoal gtK = new KipGoal("Kosten", 0, 4, "K", 10000, GoalEffect.NEGATIVE);
+		KipGoal gtK = new KipGoal("Kosten", 0, 4, "K", 10000, KipGoalEffect.NEGATIVE);
 		gtK.setGoalWeight(0.05);
-		KipGoal gtZa = new KipGoal("Zeitaufwand", 0, 4, "ZA", 130, GoalEffect.NEGATIVE);
+		KipGoal gtZa = new KipGoal("Zeitaufwand", 0, 4, "ZA", 130, KipGoalEffect.NEGATIVE);
 		gtZa.setGoalWeight(0.15);
-		KipGoal gtKz = new KipGoal("Kundenzufriedenheit", 0, 4, "KZ", 300, GoalEffect.POSITIVE);
+		KipGoal gtKz = new KipGoal("Kundenzufriedenheit", 0, 4, "KZ", 300, KipGoalEffect.POSITIVE);
 		gtKz.setGoalWeight(0.4);
-		KipGoal gtSP = new KipGoal("Stakeholder-Power", 0, 4, "SP", 50, GoalEffect.NEGATIVE);
+		KipGoal gtSP = new KipGoal("Stakeholder-Power", 0, 4, "SP", 50, KipGoalEffect.NEGATIVE);
 		gtSP.setGoalWeight(0.1);
-		KipGoal gtIg = new KipGoal("Informationsgewinn", 0, 4, "IG", 1, GoalEffect.POSITIVE);
+		KipGoal gtIg = new KipGoal("Informationsgewinn", 0, 4, "IG", 1, KipGoalEffect.POSITIVE);
 		gtIg.setGoalWeight(0.3);
 
 		List<KipGoal> goals = new ArrayList<>();
