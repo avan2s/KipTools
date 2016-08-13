@@ -38,6 +38,10 @@ public class InfluenceDiagramElementExtractor {
 			return -1;
 		}
 	}
+	
+	public String extractAbbreviation(String nodeId){
+		return nodeId.split(this.network.getPeriodSeperator())[0];
+	}
 
 	public TreeMap<String, Double> extractProbabilityDistribution(String nodeId) {
 		TreeMap<String, Double> outcomeIdToProbability = new TreeMap<>();
