@@ -10,15 +10,27 @@ public class InfluenceDiagramNetwork extends Network implements Serializable {
 
 	private String periodSeperator;
 	private String decisionAbbreviation;
+	private String instancePeriod;
+	
+	
 
-	public InfluenceDiagramNetwork() {
-		this.periodSeperator = "_";
-	}
-
-	public InfluenceDiagramNetwork(String periodSeperator, String decisionAbbreviation) {
+	public InfluenceDiagramNetwork(String periodSeperator, String decisionAbbreviation, String instancePeriod) {
 		super();
 		this.periodSeperator = periodSeperator;
 		this.decisionAbbreviation = decisionAbbreviation;
+		this.instancePeriod = instancePeriod;
+	}
+
+	public String getInstancePeriod() {
+		return instancePeriod;
+	}
+
+	public void setInstancePeriod(String instancePeriod) {
+		this.instancePeriod = instancePeriod;
+	}
+
+	public InfluenceDiagramNetwork() {
+		this.periodSeperator = "_";
 	}
 
 	public String getPeriodSeperator() {

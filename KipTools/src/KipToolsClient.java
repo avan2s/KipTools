@@ -40,7 +40,7 @@ public class KipToolsClient {
 		goals.add(gtIg);
 
 		// Einflussdiagram initialisieren und Wahrscheinlichkeiten berechnen
-		InfluenceDiagramNetwork net = new InfluenceDiagramNetwork("_", "E");
+		InfluenceDiagramNetwork net = new InfluenceDiagramNetwork("_", "E","I");
 		net.readFile("shitstorm.xdsl");
 		net.updateBeliefs();
 
@@ -49,6 +49,11 @@ public class KipToolsClient {
 		InfluenceDiagramElementExtractor influenceDiagramExtractor = new InfluenceDiagramElementExtractor(net);
 		EffectExtractor effectExtractor = new EffectExtractor(net);
 		effectExtractor.setExtractor(influenceDiagramExtractor);
+		int period = 0;
+		period = influenceDiagramExtractor.extractPeriodFromNodeId("Smtb_2", false);
+		period = influenceDiagramExtractor.extractPeriodFromNodeId("Smtb", false);
+		period = influenceDiagramExtractor.extractPeriodFromNodeId("Smtb_I", false);
+		period = influenceDiagramExtractor.extractPeriodFromNodeId("Smtb_0", true);
 
 		BenefitCalculator benefitCalculator = new BenefitCalculator(net);
 		benefitCalculator.setEffectExtractor(effectExtractor);

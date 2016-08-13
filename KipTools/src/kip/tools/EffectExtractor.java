@@ -42,7 +42,7 @@ public class EffectExtractor {
 			expectedEffect = 0;
 
 			for (int period = tVon; period <= tBis; period++) {
-				List<String> goalNodes = this.extractor.getAllNodeIdsByPeriod(period, goal);
+				List<String> goalNodes = this.extractor.getAllNodeIdsByPeriodAndGoal(period, goal);
 				for (String goalNode : goalNodes) {
 					double effectInPeriod = this.network.getNodeValue(goalNode)[0];
 					expectedEffect = expectedEffect + effectInPeriod;

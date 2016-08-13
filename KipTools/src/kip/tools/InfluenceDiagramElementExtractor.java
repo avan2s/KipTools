@@ -17,6 +17,27 @@ public class InfluenceDiagramElementExtractor {
 	public InfluenceDiagramElementExtractor(InfluenceDiagramNetwork network) {
 		this.network = network;
 	}
+	
+	public List<String> extractAllNodeIds(){
+		return new LinkedList<String>(Arrays.asList(this.network.getAllNodeIds()));
+	}
+	
+	public int extractPeriodFromNodeId(String nodeId, boolean nullPeriodWithSeperator){
+		String seperator = this.network.getPeriodSeperator();
+		
+		String[] nodeIdParts = nodeId.split(seperator);
+		String possiblePeriod = nodeIdParts[nodeIdParts.length-1];
+		boolean isInstancePeriod = possiblePeriod.contentEquals(this.network.getInstancePeriod());
+		if(possiblePeriod.matches("\\d+")){
+			return Integer.parseInt(possiblePeriod);
+		}
+		else if (!nullPeriodWithSeperator && !isInstancePeriod){
+			return 0;
+		}
+		else{
+			return -1;
+		}
+	}
 
 	public TreeMap<String, Double> extractProbabilityDistribution(String nodeId) {
 		TreeMap<String, Double> outcomeIdToProbability = new TreeMap<>();
@@ -54,11 +75,11 @@ public class InfluenceDiagramElementExtractor {
 		return possibleOutcomes;
 	}
 
-	public List<String> getAllNodeIdsByPeriod(int period, KipGoal goal) {
+	public List<String> getAllNodeIdsByPeriodAndGoal(int period, KipGoal goal) {
 		if (period == 0) {
 			return new ArrayList<String>();
 		}
-		List<String> goalNodes = new LinkedList<String>(Arrays.asList(this.network.getAllNodeIds()));
+		List<String> goalNodes = this.extractAllNodeIds();
 		String nodeAbbreviation = goal.getAbbreviation();
 		String seperator = this.network.getPeriodSeperator();
 
