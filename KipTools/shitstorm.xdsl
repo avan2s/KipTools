@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
+	<properties>
+		<property id="SMTb">SocialMediaTeilnehmerBeruhigen</property>
+		<property id="EV">ev</property>
+	</properties>
 	<nodes>
 		<cpt id="SMTb">
 			<state id="active" />

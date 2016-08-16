@@ -49,14 +49,9 @@ public class KipToolsClient {
 		InfluenceDiagramElementExtractor influenceDiagramExtractor = new InfluenceDiagramElementExtractor(net);
 		EffectExtractor effectExtractor = new EffectExtractor(net);
 		effectExtractor.setExtractor(influenceDiagramExtractor);
-		int period = 0;
-		period = influenceDiagramExtractor.extractPeriodFromNodeId("Smtb_2", false);
-		period = influenceDiagramExtractor.extractPeriodFromNodeId("Smtb", false);
-		period = influenceDiagramExtractor.extractPeriodFromNodeId("Smtb_I", false);
-		period = influenceDiagramExtractor.extractPeriodFromNodeId("Smtb_0", true);
-		String s = influenceDiagramExtractor.extractAbbreviation("SmtB");
-		s = influenceDiagramExtractor.extractAbbreviation("SmtB_1");
-
+		
+		String s = influenceDiagramExtractor.extractAbbreviation("Smtb_12");
+		
 		BenefitCalculator benefitCalculator = new BenefitCalculator(net);
 		benefitCalculator.setEffectExtractor(effectExtractor);
 		benefitCalculator.setElementExtractor(influenceDiagramExtractor);
