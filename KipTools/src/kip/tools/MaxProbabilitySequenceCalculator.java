@@ -82,6 +82,7 @@ public class MaxProbabilitySequenceCalculator extends SequenceCalculator {
 			if (maxProbabilityAction != null) {
 				nextBestAction.setAction(maxProbabilityAction);
 				nextBestAction.setBenefit(maxBenefit);
+				nextBestAction.setSimPeriod(simPeriod);
 				this.simPeriods.add(simPeriod);
 				this.evidenceSetter.setEvidence(nodeId, maxProbabilityAction, false, true);
 			} else {

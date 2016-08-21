@@ -8,7 +8,16 @@ import kip.tools.UtilityTransformer;
 public class ExpectedValue implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
 	private double uniformUtility;
+	public void setUniformUtility(double uniformUtility) {
+		this.uniformUtility = uniformUtility;
+	}
+
+	public void setUnitValue(double unitValue) {
+		this.unitValue = unitValue;
+	}
+
 	private double unitValue;
 
 	public ExpectedValue() {

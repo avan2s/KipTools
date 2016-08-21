@@ -82,7 +82,9 @@ public class BenefitCalculator {
 		this.optimizationModel.addMaximize(this.objectiveExpression);
 		this.optimizationModel.exportModel(action + ".lp");
 		if (this.optimizationModel.solve()) {
-			return this.optimizationModel.getObjValue();
+			double benefit = this.optimizationModel.getObjValue();
+			this.simAct.setBenefit(benefit);
+			return benefit;
 		}
 		throw new Exception("No Benefit could be calculated - invalid model!");
 	}

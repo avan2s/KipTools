@@ -61,6 +61,7 @@ public class KipToolsClient {
 		nextActionCalc.setExtractor(influenceDiagramExtractor);
 		nextActionCalc.setBenefitCalculator(benefitCalculator);
 		nextActionCalc.setNothingActionAllowed(false);
+		
 		SequenceCalculator sequenceCalculatorB = new MaxBenefitSequenceCalculator(net);
 		sequenceCalculatorB.setEvidenceSetter(evidenceSetter);
 		sequenceCalculatorB.setInfluenceDiagramExtractor(influenceDiagramExtractor);

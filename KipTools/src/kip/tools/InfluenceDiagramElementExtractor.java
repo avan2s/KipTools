@@ -61,22 +61,24 @@ public class InfluenceDiagramElementExtractor {
 	}
 	
 	public String extractAbbreviation(String nodeId){
+//		String[] nodes = nodeId.split(this.network.getPeriodSeperator());
+//		int lastIndex = nodes.length -1;
+//		String lastPart = nodes[lastIndex];
+//		int lastIndexBeforePeriodPart = lastIndex;
+//		
+//		boolean lastIsPeriod = lastPart.matches("\\d+") || lastPart.equals(this.network.getInstancePeriod());
+//		
+//		if(lastIsPeriod && nodes.length > 1){
+//			lastIndexBeforePeriodPart = lastIndexBeforePeriodPart-1;
+//		}
+//		StringBuilder sb = new StringBuilder(nodes[0]);
+//		for (int i = 1; i <= lastIndexBeforePeriodPart; i++) {
+//			sb.append(this.network.getPeriodSeperator()).append(nodes[i]);
+//		}
+//		String s = sb.toString();
+//		return s;
 		String[] nodes = nodeId.split(this.network.getPeriodSeperator());
-		int lastIndex = nodes.length -1;
-		String lastPart = nodes[lastIndex];
-		int lastIndexBeforePeriodPart = lastIndex;
-		
-		boolean lastIsPeriod = lastPart.matches("\\d+") || lastPart.equals(this.network.getInstancePeriod());
-		
-		if(lastIsPeriod && nodes.length > 1){
-			lastIndexBeforePeriodPart = lastIndexBeforePeriodPart-1;
-		}
-		StringBuilder sb = new StringBuilder(nodes[0]);
-		for (int i = 1; i <= lastIndexBeforePeriodPart; i++) {
-			sb.append(this.network.getPeriodSeperator()).append(nodes[i]);
-		}
-		String s = sb.toString();
-		return s;
+		return nodes[0];
 	}
 
 	public TreeMap<String, Double> extractProbabilityDistribution(String nodeId) {

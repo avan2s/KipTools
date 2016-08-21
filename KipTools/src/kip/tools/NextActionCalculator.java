@@ -64,6 +64,7 @@ public class NextActionCalculator {
 			}
 		}
 		this.nextBestAction.setPeriod(periodForRecommendation);
+		this.nextBestAction.setSimPeriod(this.simPeriod);
 		return this.nextBestAction;
 	}
 

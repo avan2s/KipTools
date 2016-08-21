@@ -17,10 +17,10 @@ public class SimPeriod implements Serializable {
 	public boolean addSimAct(SimAct simAct) {
 		return this.simActValues.add(simAct);
 	}
-	
-	public SimAct getSimActByAction(String actionName){
+
+	public SimAct getSimActByAction(String actionName) {
 		for (SimAct simAct : this.simActValues) {
-			if(simAct.getAction().contentEquals(actionName)){
+			if (simAct.getAction().contentEquals(actionName)) {
 				return simAct;
 			}
 		}
@@ -33,6 +33,14 @@ public class SimPeriod implements Serializable {
 
 	public void setPeriod(int period) {
 		this.period = period;
+	}
+
+	public List<SimAct> getSimActValues() {
+		return simActValues;
+	}
+
+	public void setSimActValues(List<SimAct> simActValues) {
+		this.simActValues = simActValues;
 	}
 
 }

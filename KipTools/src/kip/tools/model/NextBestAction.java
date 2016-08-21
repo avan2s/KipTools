@@ -9,6 +9,17 @@ public class NextBestAction implements Serializable {
 	private int period;
 	private String action;
 	private double benefit;
+	private SimPeriod simPeriod;
+	private String taskNameForAction;
+	private String taskRefForAction;
+
+	public SimPeriod getSimPeriod() {
+		return simPeriod;
+	}
+
+	public void setSimPeriod(SimPeriod simPeriod) {
+		this.simPeriod = simPeriod;
+	}
 
 	public NextBestAction() {
 	}
@@ -39,13 +50,29 @@ public class NextBestAction implements Serializable {
 		this.benefit = benefit;
 	}
 
-//	public SimAct getSimulatedValues() {
-//		return simulatedValues;
-//	}
-//
-//	public void setSimulatedValues(SimAct simulatedValues) {
-//		this.simulatedValues = simulatedValues;
-//	}
+	public String getTaskNameForAction() {
+		return taskNameForAction;
+	}
+
+	public void setTaskNameForAction(String taskNameForAction) {
+		this.taskNameForAction = taskNameForAction;
+	}
+
+	public String getTaskRefForAction() {
+		return taskRefForAction;
+	}
+
+	public void setTaskRefForAction(String taskRefForAction) {
+		this.taskRefForAction = taskRefForAction;
+	}
+
+	// public SimAct getSimulatedValues() {
+	// return simulatedValues;
+	// }
+	//
+	// public void setSimulatedValues(SimAct simulatedValues) {
+	// this.simulatedValues = simulatedValues;
+	// }
 
 	public int getPeriod() {
 		return period;

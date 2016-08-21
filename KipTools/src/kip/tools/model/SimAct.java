@@ -9,7 +9,11 @@ public class SimAct implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String action;
+	private String taskNameForAction;
+	private String taskRefForAction;
+
 	private List<SimGoal> simGoalValues;
+	private double benefit;
 
 	public SimAct() {
 		this.simGoalValues = new ArrayList<>();
@@ -27,11 +31,11 @@ public class SimAct implements Serializable {
 		}
 		return false;
 	}
-	
-	public SimGoal getSimGoalByGoalName(String goalName){
+
+	public SimGoal getSimGoalByGoalName(String goalName) {
 		for (SimGoal simGoal : simGoalValues) {
 			String simGoalName = simGoal.getKipGoal().getGoalTarget();
-			if(goalName.contentEquals(simGoalName))
+			if (goalName.contentEquals(simGoalName))
 				return simGoal;
 		}
 		return null;
@@ -49,8 +53,32 @@ public class SimAct implements Serializable {
 		return action;
 	}
 
+	public double getBenefit() {
+		return benefit;
+	}
+
+	public void setBenefit(double benefit) {
+		this.benefit = benefit;
+	}
+
 	public void setAction(String action) {
 		this.action = action;
+	}
+
+	public String getTaskNameForAction() {
+		return taskNameForAction;
+	}
+
+	public void setTaskNameForAction(String taskNameForAction) {
+		this.taskNameForAction = taskNameForAction;
+	}
+
+	public String getTaskRefForAction() {
+		return taskRefForAction;
+	}
+
+	public void setTaskRefForAction(String taskRefForAction) {
+		this.taskRefForAction = taskRefForAction;
 	}
 
 }

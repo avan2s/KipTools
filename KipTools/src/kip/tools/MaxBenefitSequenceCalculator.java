@@ -5,6 +5,7 @@ import java.util.List;
 import kip.tools.model.KipGoal;
 import kip.tools.model.KipSequence;
 import kip.tools.model.NextBestAction;
+import kip.tools.model.SimPeriod;
 
 public class MaxBenefitSequenceCalculator extends SequenceCalculator {
 
@@ -24,9 +25,11 @@ public class MaxBenefitSequenceCalculator extends SequenceCalculator {
 			// Nutzenerbringenste Aktion für die Periode ermitteln
 			NextBestAction nextBestAction = this.nextActionCalculator.calculateNextBestAction(currentPeriod, period,
 					goals);
+			SimPeriod simPeriod = this.nextActionCalculator.getSimPeriod();
+			nextBestAction.setSimPeriod(simPeriod);
 			this.kipSequence.getSequence().add(nextBestAction);
 			// Daraus einhergehende Simulationswerte bestimmen
-			this.simPeriods.add(this.nextActionCalculator.getSimPeriod());
+			this.simPeriods.add(simPeriod);
 
 			// Entscheidung in der Periode als Evidenz setzen
 			String nodeAbbreviation = this.network.getDecisionAbbreviation();
