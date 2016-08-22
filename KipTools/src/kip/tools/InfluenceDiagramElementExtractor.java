@@ -18,65 +18,64 @@ public class InfluenceDiagramElementExtractor {
 	public InfluenceDiagramElementExtractor(InfluenceDiagramNetwork network) {
 		this.network = network;
 	}
-	
-	public List<String> extractAllNodeIds(){
+
+	public List<String> extractAllNodeIds() {
 		return new LinkedList<String>(Arrays.asList(this.network.getAllNodeIds()));
 	}
-	
-	public int extractPeriodFromNodeId(String nodeId, boolean nullPeriodWithSeperator){
+
+	public int extractPeriodFromNodeId(String nodeId, boolean nullPeriodWithSeperator) {
 		String seperator = this.network.getPeriodSeperator();
-		
+
 		String[] nodeIdParts = nodeId.split(seperator);
-		String possiblePeriod = nodeIdParts[nodeIdParts.length-1];
+		String possiblePeriod = nodeIdParts[nodeIdParts.length - 1];
 		boolean isInstancePeriod = possiblePeriod.contentEquals(this.network.getInstancePeriod());
-		if(possiblePeriod.matches("\\d+")){
+		if (possiblePeriod.matches("\\d+")) {
 			return Integer.parseInt(possiblePeriod);
-		}
-		else if (!nullPeriodWithSeperator && !isInstancePeriod){
+		} else if (!nullPeriodWithSeperator && !isInstancePeriod) {
 			return 0;
-		}
-		else{
+		} else {
 			return -1;
 		}
 	}
-	
-	public String extractNodeUserProperty(String nodeId, String userProperty){
+
+	public String extractNodeUserProperty(String nodeId, String userProperty) {
 		UserProperty[] properties = this.network.getNodeUserProperties(nodeId);
 		for (UserProperty property : properties) {
-			if(property.name.contentEquals(userProperty)){
+			if (property.name.contentEquals(userProperty)) {
 				return property.value;
 			}
 		}
 		return null;
 	}
-	
-	public String extractNetworkUserProperty(String userProperty){
+
+	public String extractNetworkUserProperty(String userProperty) {
 		UserProperty[] properties = this.network.getUserProperties();
 		for (UserProperty property : properties) {
-			if(property.name.contentEquals(userProperty)){
+			if (property.name.contentEquals(userProperty)) {
 				return property.value;
 			}
 		}
 		return null;
 	}
-	
-	public String extractAbbreviation(String nodeId){
-//		String[] nodes = nodeId.split(this.network.getPeriodSeperator());
-//		int lastIndex = nodes.length -1;
-//		String lastPart = nodes[lastIndex];
-//		int lastIndexBeforePeriodPart = lastIndex;
-//		
-//		boolean lastIsPeriod = lastPart.matches("\\d+") || lastPart.equals(this.network.getInstancePeriod());
-//		
-//		if(lastIsPeriod && nodes.length > 1){
-//			lastIndexBeforePeriodPart = lastIndexBeforePeriodPart-1;
-//		}
-//		StringBuilder sb = new StringBuilder(nodes[0]);
-//		for (int i = 1; i <= lastIndexBeforePeriodPart; i++) {
-//			sb.append(this.network.getPeriodSeperator()).append(nodes[i]);
-//		}
-//		String s = sb.toString();
-//		return s;
+
+	public String extractAbbreviation(String nodeId) {
+		// String[] nodes = nodeId.split(this.network.getPeriodSeperator());
+		// int lastIndex = nodes.length -1;
+		// String lastPart = nodes[lastIndex];
+		// int lastIndexBeforePeriodPart = lastIndex;
+		//
+		// boolean lastIsPeriod = lastPart.matches("\\d+") ||
+		// lastPart.equals(this.network.getInstancePeriod());
+		//
+		// if(lastIsPeriod && nodes.length > 1){
+		// lastIndexBeforePeriodPart = lastIndexBeforePeriodPart-1;
+		// }
+		// StringBuilder sb = new StringBuilder(nodes[0]);
+		// for (int i = 1; i <= lastIndexBeforePeriodPart; i++) {
+		// sb.append(this.network.getPeriodSeperator()).append(nodes[i]);
+		// }
+		// String s = sb.toString();
+		// return s;
 		String[] nodes = nodeId.split(this.network.getPeriodSeperator());
 		return nodes[0];
 	}
@@ -121,20 +120,21 @@ public class InfluenceDiagramElementExtractor {
 		if (period == 0) {
 			return new ArrayList<String>();
 		}
-		List<String> goalNodes = this.extractAllNodeIds();
-		String nodeAbbreviation = goal.getAbbreviation();
+		List<String> goalNodeIds = this.extractAllNodeIds();
+		String goalNodeAbbreviation = goal.getAbbreviation();
 		String seperator = this.network.getPeriodSeperator();
-
-		for (Iterator<String> iterator = goalNodes.iterator(); iterator.hasNext();) {
-			String nodeName = iterator.next();
-			StringBuilder sbPattern = new StringBuilder(nodeAbbreviation);
-			sbPattern.append(seperator).append("(.*)").append(seperator).append(period);
-
-			if (!nodeName.matches(sbPattern.toString())) {
+		
+		for (Iterator<String> iterator = goalNodeIds.iterator(); iterator.hasNext();) {
+			String nodeId = iterator.next();
+			String nodeAbbreviation = this.extractAbbreviation(nodeId);
+			boolean hasAbbreviation = nodeAbbreviation.equals(goalNodeAbbreviation);
+			boolean hasPeriod = nodeId.endsWith(seperator+String.valueOf(period));
+			
+			if (!hasAbbreviation || !hasPeriod) {
 				iterator.remove();
 			}
 		}
-		return goalNodes;
+		return goalNodeIds;
 	}
 
 	public String generateNodeId(String nodeAbbreviation, int period, boolean nullPeriodWithSeperator) {
