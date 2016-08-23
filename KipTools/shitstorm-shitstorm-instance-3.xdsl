@@ -171,7 +171,7 @@
 		</cpt>
 		<utility id="SP">
 			<parents>R_SP_I R_SP</parents>
-			<utilities>0 -35 -70 -80 35 0 -35 -45 70 35 0 -10 80 45 10 0</utilities>
+			<utilities>0 35 70 80 -35 0 35 45 -70 -35 0 10 -80 -45 -10 0</utilities>
 			<property id="nodefocus">goal</property>
 		</utility>
 		<cpt id="SMTb_1">
@@ -396,7 +396,7 @@
 		</utility>
 		<utility id="SP_1">
 			<parents>R_SP R_SP_1</parents>
-			<utilities>0 -35 -70 -80 35 0 -35 -45 70 35 0 -10 80 45 10 0</utilities>
+			<utilities>0 35 70 80 -35 0 35 45 -70 -35 0 10 -80 -45 -10 0</utilities>
 			<property id="nodefocus">goal</property>
 		</utility>
 		<cpt id="Einfluss_SP_Ve_1">
@@ -674,7 +674,7 @@
 		</utility>
 		<utility id="SP_2">
 			<parents>R_SP_1 R_SP_2</parents>
-			<utilities>0 -35 -70 -80 35 0 -35 -45 70 35 0 -10 80 45 10 0</utilities>
+			<utilities>0 35 70 80 -35 0 35 45 -70 -35 0 10 -80 -45 -10 0</utilities>
 			<property id="nodefocus">goal</property>
 		</utility>
 		<cpt id="Einfluss_SP_Ve_2">
@@ -952,7 +952,7 @@
 		</utility>
 		<utility id="SP_3">
 			<parents>R_SP_2 R_SP_3</parents>
-			<utilities>0 -35 -70 -80 35 0 -35 -45 70 35 0 -10 80 45 10 0</utilities>
+			<utilities>0 35 70 80 -35 0 35 45 -70 -35 0 10 -80 -45 -10 0</utilities>
 			<property id="nodefocus">goal</property>
 		</utility>
 		<cpt id="Einfluss_SP_Ve_3">
@@ -1230,7 +1230,7 @@
 		</utility>
 		<utility id="SP_4">
 			<parents>R_SP_3 R_SP_4</parents>
-			<utilities>0 -35 -70 -80 35 0 -35 -45 70 35 0 -10 80 45 10 0</utilities>
+			<utilities>0 35 70 80 -35 0 35 45 -70 -35 0 10 -80 -45 -10 0</utilities>
 			<property id="nodefocus">goal</property>
 		</utility>
 		<cpt id="Einfluss_SP_Ve_4">

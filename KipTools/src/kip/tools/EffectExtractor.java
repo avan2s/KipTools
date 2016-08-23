@@ -2,6 +2,7 @@ package kip.tools;
 
 import java.util.List;
 
+import kip.enums.KipGoalEffect;
 import kip.tools.exception.PeriodNotValidException;
 import kip.tools.exception.ValueNotReadableException;
 import kip.tools.model.ExpectedValue;
@@ -25,11 +26,16 @@ public class EffectExtractor {
 	}
 
 	public final ExpectedValue extract(KipGoal goal) throws Exception {
-		ExpectedValue expectedValue = new ExpectedValue();
-		expectedValue.setUnitValue(this.extractExpectedEffect(goal), goal.getGoalValue(), goal.getGoalEffect());
+		double unitValue = this.extractExpectedEffect(goal);
+		double goalValue = goal.getGoalValue();
+		KipGoalEffect goalEffect = goal.getGoalEffect();
+		double uniformUtility = UtilityTransformer.calcUniformUtility(unitValue, goalValue, goalEffect);
+		double procentualDeviation = UtilityTransformer.calcProcentualDeviation(unitValue, goalValue);
+		ExpectedValue expectedValue = new ExpectedValue(uniformUtility,procentualDeviation,unitValue);
 		return expectedValue;
 	}
 
+	// Extrahiere den erwarteten Effekt bzgl. einer Zielgröße
 	private double extractExpectedEffect(KipGoal goal) throws PeriodNotValidException, ValueNotReadableException {
 		double expectedEffect = 0;
 		try {

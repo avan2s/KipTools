@@ -3,19 +3,12 @@ package kip.tools;
 
 import java.util.List;
 
-import ilog.concert.IloException;
-import ilog.concert.IloLinearNumExpr;
-import ilog.concert.IloNumVar;
-import ilog.cplex.IloCplex;
-import kip.enums.KipGoalEffect;
 import kip.tools.model.ExpectedValue;
 import kip.tools.model.KipGoal;
 import kip.tools.model.SimAct;
 
 public class BenefitCalculator {
 
-	private IloCplex optimizationModel;
-	private IloLinearNumExpr objectiveExpression;
 	private EffectExtractor effectExtractor;
 	private EvidenceSetter evidenceSetter;
 	private InfluenceDiagramElementExtractor elementExtractor;
@@ -41,12 +34,6 @@ public class BenefitCalculator {
 		this.evidenceSetter = new EvidenceSetter(network);
 
 		this.simAct = new SimAct();
-		try {
-			this.optimizationModel = new IloCplex();
-			this.objectiveExpression = this.optimizationModel.linearNumExpr();
-		} catch (IloException e) {
-			e.printStackTrace();
-		}
 	}
 
 	// Abbildung 59
@@ -69,76 +56,25 @@ public class BenefitCalculator {
 
 		this.simAct.setAction(action);
 
+		double benefit = 0;
 		for (KipGoal kipGoal : goals) {
 			// Berechne zukünftige Auswirkungen auf die Zielgröße
 			ExpectedValue expectedValue = this.effectExtractor.extract(kipGoal);
-			this.addGoalToOptimizationModel(kipGoal, expectedValue.getUniformUtility());
+			double weightedGoalUniformUtility = kipGoal.getGoalWeight() * expectedValue.getUniformUtility();
+			benefit = benefit + weightedGoalUniformUtility;
 
 			// Füge Zuordnung ExpectedValue dem Simulationsobjekt hinzu
 			this.simAct.addSimGoal(kipGoal, expectedValue);
 		}
-
-		// Löse das Optimierungsmodell
-		this.optimizationModel.addMaximize(this.objectiveExpression);
-		this.optimizationModel.exportModel(action + ".lp");
-		if (this.optimizationModel.solve()) {
-			double benefit = this.optimizationModel.getObjValue();
-			this.simAct.setBenefit(benefit);
-			return benefit;
-		}
-		throw new Exception("No Benefit could be calculated - invalid model!");
+		this.simAct.setBenefit(benefit);
+		return benefit;
 	}
 
 	private void reset() {
-		this.optimizationModel = null;
-		this.objectiveExpression = null;
-		this.initialize(network);
+		this.initialize(this.network);
 	}
 
-	// Abbildung 39:
-	private void addGoalToOptimizationModel(final KipGoal goal, final double expectedValue) throws IloException {
-		double pUp;
-		double pDown = -goal.getGoalWeight();
-		if (goal.getGoalEffect().equals(KipGoalEffect.NEUTRAL)) {
-			pUp = -goal.getGoalWeight();
-		} else {
-			pUp = goal.getGoalWeight();
-		}
-
-		double utilityOpt = UtilityTransformer.NORM_FACTOR;
-		if (goal.getGoalEffect().equals(KipGoalEffect.NEGATIVE)) {
-			utilityOpt = -utilityOpt;
-		}
-
-		// Nebenbedingung hinzufügen
-		IloLinearNumExpr constraint = optimizationModel.linearNumExpr();
-		IloNumVar deviationUp = optimizationModel.numVar(0, Double.MAX_VALUE);
-		IloNumVar deviationDown = optimizationModel.numVar(0, Double.MAX_VALUE);
-		constraint.addTerm(-1, deviationUp);
-		constraint.addTerm(1, deviationDown);
-		constraint.setConstant(expectedValue);
-		optimizationModel.addEq(constraint, utilityOpt);
-
-		// Zielfunktion um Term ergänzen
-		objectiveExpression.addTerm(pUp, deviationUp);
-		objectiveExpression.addTerm(pDown, deviationDown);
-	}
-
-	public IloCplex getOptimizationModel() {
-		return optimizationModel;
-	}
-
-	public void setOptimizationModel(IloCplex optimizationModel) {
-		this.optimizationModel = optimizationModel;
-	}
-
-	public IloLinearNumExpr getObjectiveExpression() {
-		return objectiveExpression;
-	}
-
-	public void setObjectiveExpression(IloLinearNumExpr objectiveExpression) {
-		this.objectiveExpression = objectiveExpression;
-	}
+	// Abbildung 39 entfernen
 
 	public EffectExtractor getEffectExtractor() {
 		return effectExtractor;
