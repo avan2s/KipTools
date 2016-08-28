@@ -6,9 +6,9 @@ public class ExpectedValue implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private final double uniformUtility;
-	private final double procentualDeviation;
-	private final double unitValue;
+	private double uniformUtility;
+	private double procentualDeviation;
+	private double unitValue;
 
 	public ExpectedValue() {
 		this.uniformUtility = 0;
@@ -32,6 +32,18 @@ public class ExpectedValue implements Serializable {
 
 	public double getProcentualDeviation() {
 		return procentualDeviation;
+	}
+
+	public void setUniformUtility(double uniformUtility) {
+		this.uniformUtility = uniformUtility;
+	}
+
+	public void setProcentualDeviation(double procentualDeviation) {
+		this.procentualDeviation = procentualDeviation;
+	}
+
+	public void setUnitValue(double unitValue) {
+		this.unitValue = unitValue;
 	}
 
 	@Override
